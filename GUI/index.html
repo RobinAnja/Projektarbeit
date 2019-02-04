@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projektarbeit - Test</title>
+	<script src="https://code.jquery.com/jquery-latest.js" type="text/javascript"></script>
+	
+	<!-- Einbindung von stylesheets/ css-Dateinen z.B. <link ref= "stylesheets" href = "DATEIPFAD" type = "text/css"-->
+	<script type="text/javascript">
+		function savePoints(){
+        console.log(document.forms[0]["PfadFrage"].value)
+        console.log(document.forms[0]["PunkteFrage"].value)
+		localStorage.setItem(document.forms[0]["PfadFrage"].value, document.forms[0]["PunkteFrage"].value);
+        readPoints();
+	}
+
+	function readPoints(){
+      $("#pointsList").empty();
+          var element = "";
+        element += "<div class=\"listEntry\"><pairlist>";
+		for(var key in localStorage){
+            if(!(localStorage.getItem(key) == null)){
+			element += "<pair>";
+            element += "<key>" + key + "</key>";
+            element+= "<value>" + localStorage.getItem(key) + "</value></pair>";
+            element+= "<input class=\"deleteItem\" type=\"submit\" onsubmit=\"deleteItem(" + key + "); false;\" value=\"Löschen\">";
+            console.log(element);
+            }
+		}
+        element+= "</pairlist></div>";
+        if(!(element =="")){
+            $("#pointsList").append(element); 
+        }  
+	}
+
+    $(document).ready(function(){
+        readPoints();
+        
+        /*$(".deleteItem").click(function(removeKey){
+            console.log("item entfernen");
+            removePoints(removeKey);
+            readPoints();
+        })*/
+        
+        $(".deleteList").click(function(){
+            deletePointList();
+        })
+    })
+        function deleteItem(key){
+            var elementToRemove = key;
+        if(localStorage.contains(elementToRemove)){
+        localStorage.removeItem(elementToRemove);
+        }
+        readPoints()
+        }
+        
+	function deletePointList(){
+        console.log("empty")
+        localStorage.clear();
+        $("pointsList").empty()
+        readPoints();
+	}
+    
+    /*function removePoints(key){
+        var elementToRemove = key;
+        if(localStorage.contains(elementToRemove)){
+        localStorage.removeItem(elementToRemove);
+        }
+        readPoints()
+    } */
+	</script>
+</head>
+<body onload="readPoints(); false;">
+<div id="content">
+	<h1>Homepage</h1>
+	<form onsubmit="savePoints(); return false;">
+		<p><label for="PfadFrage">Pfad zur Frage:</lable><input type="text" id="PfadFrage" name="PfadFrage"/></p>
+		<p><label for="PunkteFrage">Punkte:</lable><input type="text" id="PunkteFrage" name="PunkteFrage"/></p>
+		<p><input type="submit" value="Speichern"></p>
+	</form>
+	<h1>Meine Punkte</h1>
+	<ol id="pointsList"></ol>
+	<p><input class="deleteList" type="submit" value="Löschen"></p>
+</div>
+	<!--<script src="script.js"></script>-->
+</body>
+</html>
