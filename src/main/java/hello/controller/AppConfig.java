@@ -1,11 +1,12 @@
-package hello.WebSecu;
+package hello.controller;
 
 import java.util.List;
+import java.util.Locale;
+import java.util.TimeZone;
 
-import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.validation.MessageCodesResolver;
@@ -24,19 +25,83 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.SessionLocaleResolver;
+import org.springframework.web.servlet.resource.PathResourceResolver;
+import org.springframework.web.servlet.view.JstlView;
+import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
 @EnableWebMvc
-public class WebConfiguration implements WebMvcConfigurer {
-
-    @Bean
-    public MessageSource messageSource() {
-        ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        // Load file: validation.properties
-        messageSource.setBasename("classpath:validation");
-        messageSource.setDefaultEncoding("UTF-8");
-        return messageSource;
-    }
+@ComponentScan("hello")
+public class AppConfig implements WebMvcConfigurer {
+	 @Bean
+	    public UrlBasedViewResolver viewResolver() {
+	        UrlBasedViewResolver resolver
+	          = new UrlBasedViewResolver();
+	        resolver.setPrefix("/webapp/WEB-INF/view/");
+	        resolver.setSuffix(".jsp");
+	        resolver.setViewClass(JstlView.class);
+	        return resolver;
+	    }
+	 
+	 @Bean
+	 public CookieLocaleResolver cookieLocaleResolverExample() {
+	     CookieLocaleResolver localeResolver 
+	       = new CookieLocaleResolver();
+	     localeResolver.setDefaultLocale(Locale.GERMAN);
+	     localeResolver.setCookieName("locale-cookie-resolver-example");
+	     localeResolver.setCookieMaxAge(3600);
+	     return localeResolver;
+	 }
+	  
+	 @Bean
+	 public SessionLocaleResolver sessionLocaleResolver() { 
+	     SessionLocaleResolver localeResolver = new SessionLocaleResolver(); 
+	     localeResolver.setDefaultLocale(Locale.GERMANY); 
+	     localeResolver.setDefaultTimeZone(TimeZone.getTimeZone("UTC"));
+	     return localeResolver; 
+	 }
+	 
+	 @Override
+	 public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	     registry.addResourceHandler("/resources/**")
+	       .addResourceLocations("/", "/resources/")
+	       .setCachePeriod(3600)
+	       .resourceChain(true)
+	       .addResolver(new PathResourceResolver());
+	 }
+	/*  
+	 @Bean
+	 public ResourceBundleThemeSource themeSource() {
+	     ResourceBundleThemeSource themeSource
+	       = new ResourceBundleThemeSource();
+	     themeSource.setDefaultEncoding("UTF-8");
+	     themeSource.setBasenamePrefix("themes.");
+	     return themeSource;
+	 }
+	 
+	 @Bean
+	 public CookieThemeResolver themeResolver() {
+	     CookieThemeResolver resolver = new CookieThemeResolver();
+	     resolver.setDefaultThemeName("example");
+	     resolver.setCookieName("example-theme-cookie");
+	     return resolver;
+	 }
+	  
+	 @Bean
+	 public ThemeChangeInterceptor themeChangeInterceptor() {
+	    ThemeChangeInterceptor interceptor
+	      = new ThemeChangeInterceptor();
+	    interceptor.setParamName("theme");
+	    return interceptor;
+	 }
+	  
+	 @Override
+	 public void addInterceptors(InterceptorRegistry registry) {
+	     registry.addInterceptor(themeChangeInterceptor());
+	 }
+	 */
 
 	@Override
 	public void configurePathMatch(PathMatchConfigurer configurer) {
@@ -70,12 +135,6 @@ public class WebConfiguration implements WebMvcConfigurer {
 
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -145,4 +204,5 @@ public class WebConfiguration implements WebMvcConfigurer {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	 
 }
