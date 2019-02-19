@@ -169,7 +169,7 @@ opacity:1;
 transition:.7s;
 }
 
-.Insertion-Sort-Verfahren {
+.Test1 {
  width:250px;
  height:400px;
  background:none;
@@ -185,7 +185,7 @@ transition:.7s;
  transition: .5s ease;
 }
 
-.Insertion-Sort-Verfahren h1{
+.Test1 h1{
  margin:0;
  padding: 0 0 20px;
  text-align: center;
@@ -193,12 +193,12 @@ transition:.7s;
 }
 
 
-.Insertion-Sort-Verfahren:hover {
+.Test1:hover {
 	box-shadow: 0px 0px 40px 16px rgba(18,18,18,1.00);
 }
 
 
-.Insertion-Sort-Verfahren a{
+.Test1 a{
     text-decoration:none;
     color:#fff;
 	  width:200px;
@@ -207,11 +207,11 @@ transition:.7s;
     top:150px;
  }
  
-.Insertion-Sort-Verfahren:hover {
+.Test1:hover {
 	box-shadow: 0px 0px 40px 16px rgba(18,18,18,1.00);
 }
 
-.Selection-Sort-Verfahren {
+.Test2{
  width:250px;
  height:400px;
  background:none;
@@ -226,7 +226,7 @@ transition:.7s;
  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
  transition: .5s ease;
 }
-.Selection-Sort-Verfahren h1{
+.Test2 h1{
  margin:0;
  padding: 0 0 20px;
  text-align: center;
@@ -235,11 +235,11 @@ transition:.7s;
 }
 
 
-.Selection-Sort-Verfahren:hover {
+.Test2:hover {
 	box-shadow: 0px 0px 40px 16px rgba(18,18,18,1.00);
 }
 
-.Selection-Sort-Verfahren a{
+.Test2 a{
     text-decoration:none;
     color:#fff;
 	 width:200px;
@@ -247,7 +247,7 @@ transition:.7s;
     position: absolute;
     top:150px;
  }
- .Quicksort-Verfahren{
+ .Test3{
  width:250px;
  height:400px;
  background:none;
@@ -262,7 +262,7 @@ transition:.7s;
  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
  transition: .5s ease;
 }
-.Quicksort-Verfahren h1{
+.Test3 h1{
  margin:0;
  padding: 0 0 20px;
  text-align: center;
@@ -271,11 +271,11 @@ transition:.7s;
 
 }
 
-.Quicksort-Verfahren:hover {
+.Test3:hover {
 	box-shadow: 0px 0px 40px 16px rgba(18,18,18,1.00);
 }
 
-.Quicksort-Verfahren a{
+.Test3 a{
     text-decoration:none;
     color:#fff;
     width:200px;
