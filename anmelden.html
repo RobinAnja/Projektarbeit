@@ -5,18 +5,28 @@
   <title> ANMELDUNG </title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
-  <div class="form">
+<body oncontextmenu= "return false"">  
+ <div class="form">
     <img src="osi.jpg" class="learning">
 	 <h2> FunTestic</h2>
        <h1>Anmelden</h1>
 	   <form>
-		 <p><input type="text" placeholder="Benutzername" name="" value=""></p>
-		 <p><input type="password" placeholder="Passwort" name="" value=""></p>
-		 <input type="submit" name="" value="Anmelden">
+		 <input type="text" placeholder="Benutzername" name="userid" value="">
+		 <input type="password" placeholder="Passwort" name="pswd" value="">
+		 <input type="submit" onclick="check(this.form)" value="Anmelden">
 		 <a href="passwortVergeseen.html">Kennwort vergessen?</a><br>
 		 <a href="registrieren.html">Noch nicht registriert?</a>
 	   </form>
  </div>
+ 
+ <script language="javascript">
+ function check (form){
+     if(form.userid.value== "dew" && form.pswd.value == "123"){
+	    window.open('home.html')
+	 } else {
+	 alert("Benutzername oder Kennwort sind nicht korrek")
+	 }
+ }
+</script>
 </body>
 </html>
