@@ -23,10 +23,16 @@
     <div class="form">
 	 <h2> FunTestic </h2>
 	 <h1> Kontaktaufnahme </h1>
-	   <form>
+	   <form name="form1" action="#">
 		 <p><input type="text" placeholder="Benutzername" name="" value=""></p>
-		 <p><input type="text" placeholder="E-Mail" name="" value=""></p>
+		 <p><input type="text" placeholder="E-Mail" name="Email" value=""></p>
 		 <p><input type="text" placeholder="Nachricht schreiben" name="" value=""></p>
-		 <input type="submit" name="" value="Senden">
+		 <input type="submit"onclick="ValidateEmail(document.form1.Email)" value="Senden">
 	   </form>
+	   </div>
+	   
+	   <script src="email-validation.js"></script>
+	   
+	   </body>
+	   
 </html>
