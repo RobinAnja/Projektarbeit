@@ -5,14 +5,20 @@
   <title>Kennwort vergessen</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
-<body>
+<body onload='document.form1.Email.focus()'>
   <div class="form">
    <img src="osi.jpg" class="learning"></body>
     <h2> FunTestic </h2>
     <h1>Bitte geben Sie Ihre E-Mail Adresse ein.</h1>
-	<form>
-		 <p><input type="text" placeholder="E-Mail" name="" value=""></p>
-		  <input type="submit" name="" value="Passwort wiederherstellen">
+	<form name="form1" action="#">
+
+	<input type="text" placeholder="E-Mail" name="Email" value="">
+		 
+		 <input type="submit"onclick="ValidateEmail(document.form1.Email)" value="Passwort wiederherstellen">
+		  
     </form>
+	
+	<script src="email-validation.js"></script>
+
 </body>
 </html>
