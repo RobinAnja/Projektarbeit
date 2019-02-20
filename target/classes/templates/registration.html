@@ -4,22 +4,22 @@
  <meta charset="UTF-8">
   <title> REGISTRIERUNG </title>
     <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 </head>
 <body>
     <div class="form">
     <img th:src="@{/images/osi.jpg}" class="learning">
 	 <h2> FunTestic </h2>
 	 <h1>Registrieren</h1>
-	   <form id="RegisterForm" action="@{/home}" onsubmit="CallServletf('POST')">
-		 <p><input type="text" placeholder="Benutzername" name="" value=""></p>
-		 <p><input type="text" placeholder="E-Mail" name="" value=""></p>
-		 <p><input type="password" placeholder="Passwort " name="" value=""></p>
-		 <p><input type="password" placeholder="Passwort wiederholen" name="" value=""></p>
-		 <input type="submit" name="" value="Registrieren">
-	   </form>
-	       <script src="https://code.jquery.com/jquery-latest.js"></script>
-	<script type="text/javascript" th:src="@{/js/registrationTest.js}"></script>
-    </div>
+	   <form id="RegisterForm" >
+		 <p><input type="text" id="username" placeholder="Benutzername" name="" value=""></p>
+		 <p><input type="text" id="email" placeholder="E-Mail" name="" value=""></p>
+		 <p><input type="password" id="password" placeholder="Passwort " name="" value=""></p>
+		 <p><input type="password" id="passwordCompare" placeholder="Passwort wiederholen" name="" value=""></p>
+		 <input type="submit" id="submitButton" th:href="@{/anmelden}" name="" value="Registrieren">
+	   	
+	  	</form>
+	   </div>
+	    <script src="https://code.jquery.com/jquery-latest.js"></script>
+		<script type="text/javascript" th:src="@{/js/registration.js}"></script>
     </body>
 </html>

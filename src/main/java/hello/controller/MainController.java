@@ -56,7 +56,7 @@ public class MainController {
         mailSender.send(email);
     }
 
-    @GetMapping("/login")
+    @GetMapping("/anmelden")
     public ModelAndView getLogin() {
     	ModelAndView loginPage = new ModelAndView("anmelden");
     	return loginPage;
@@ -68,7 +68,12 @@ public class MainController {
     	return registerPage;
     }
     
-
+    @GetMapping("/home")
+    public ModelAndView getHome() {
+    	ModelAndView homePage = new ModelAndView("home");
+    	return homePage;
+    }
+    
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody
@@ -155,24 +160,27 @@ public class MainController {
     }
     
 
-    @GetMapping(path = "/home") // Map ONLY GET Requests
+    @GetMapping(path = "/register") // Map ONLY GET Requests
     public @ResponseBody
-    String addNewUser(@RequestParam String name
-            , @RequestParam String email, @RequestParam String password) {
+    boolean addNewUser(@RequestParam("username") String name
+            , @RequestParam("email") String email, @RequestParam("password") String password) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        n.setEncryptedPassword(passwordEncoder.encode(password));
-        userRepository.save(n);
-        return "home";
+    	try{
+    		User n = new User();
+            n.setName(name);
+            n.setEmail(email);
+            n.setEncryptedPassword(passwordEncoder.encode(password));
+            userRepository.save(n);
+            return true;
+    	}catch(Exception e) {
+    		return false;
+    	}  	
     }
 
     @GetMapping(path = "/findByUsername")
     public @ResponseBody
-    boolean findUserByUsername(@RequestParam(value="name") String username, @RequestParam(value="password") String password) {
+    boolean findUserByUsername(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         // This returns a JSON or XML with the users
         List<User> list = userRepository.findAll();
         for (User user : list) {

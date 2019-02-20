@@ -10,13 +10,14 @@
     <img th:src="@{/images/osi.jpg}" class="learning">
 	 <h2> FunTestic</h2>
        <h1>Anmelden</h1>
-	   <form class="p">
-		 <input type="text" placeholder="Benutzername" name="userid" value="">
-		 <input type="password" placeholder="Passwort" name="pswd" value="">
-		 <input type="submit" onclick="check(this.form)" value="Anmelden">
+	   <form class="p" id="loginForm">
+		 <input type="text" id="username" placeholder="Benutzername" name="userid" value="">
+		 <input type="password" id="password" placeholder="Passwort" name="pswd" value="">
+		 <input type="submit" value="Anmelden">
 		 <a href="passwortVergeseen.html">Kennwort vergessen?</a><br>
 		 <a href="registration.html">Noch nicht registriert?</a>
 	   </form>
+	   <script src="https://code.jquery.com/jquery-latest.js"></script>
 	   <script type="text/javascript" th:src="@{/js/login.js}"></script>
  </div>
  
