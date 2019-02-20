@@ -15,7 +15,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.mail.javamail.JavaMailSender;
 import java.util.List;
 import java.util.Random;
@@ -26,7 +28,6 @@ import java.util.UUID;
 
 @Controller    // This means that this class is a Controller
 @RequestMapping(path = "/demo") // This means URL's start with /demo (after Application path)
-@ResponseBody
 public class MainController {
     int[] array;
     
@@ -56,8 +57,9 @@ public class MainController {
     }
 
     @GetMapping("/login")
-    public String getLogin() {
-    	return "login";
+    public ModelAndView getLogin() {
+    	ModelAndView loginPage = new ModelAndView("anmelden");
+    	return loginPage;
     }
     
     
