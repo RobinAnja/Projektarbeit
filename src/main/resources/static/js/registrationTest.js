@@ -1,1 +1,3 @@
-alert("I'm registered");
+function greeting(){
+    alert("hello, world");
+}
