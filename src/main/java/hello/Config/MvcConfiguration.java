@@ -16,15 +16,21 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
  
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackageClasses = { MvcConfiguration.class })
+@ComponentScan(basePackages = "hello.controller")
 public class MvcConfiguration extends WebMvcConfigurerAdapter
 {
  
     
     @Override
     public void addResourceHandlers(final ResourceHandlerRegistry registry) {
-    	registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    	registry.addResourceHandler("demo/**").addResourceLocations("/resources/**");
+        registry.addResourceHandler(
+                "/images/**",
+                "/css/**",
+                "/js/**")
+                .addResourceLocations(
+                        "classpath:/static/images/",
+                        "classpath:/static/css/",
+                        "classpath:/static/js/");
     }
     
 }

@@ -1,2 +1,4 @@
 
-alert("I'm active");
+function greeting(){
+    alert("hello, world");
+}

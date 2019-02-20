@@ -3,12 +3,11 @@
 <head>
  <meta charset="UTF-8">
   <title> ANMELDUNG </title>
-    <link rel="stylesheet" th:href="@{/demo/styles.css}" />
-	<script type="text/javascript" src=".../js/login.js"></script>
-</head>
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+	</head>
 <body oncontextmenu= "return false"">  
  <div class="form">
-    <img src="osi.jpg" class="learning">
+    <img th:src="@{/images/osi.jpg}" class="learning">
 	 <h2> FunTestic</h2>
        <h1>Anmelden</h1>
 	   <form class="p">
@@ -18,6 +17,7 @@
 		 <a href="passwortVergeseen.html">Kennwort vergessen?</a><br>
 		 <a href="registration.html">Noch nicht registriert?</a>
 	   </form>
+	   <script type="text/javascript" th:src="@{/js/login.js}"></script>
  </div>
  
  <script language="javascript">
