@@ -62,6 +62,11 @@ public class MainController {
     	return loginPage;
     }
     
+    @GetMapping("/registration")
+    public ModelAndView getRegistration() {
+    	ModelAndView registerPage = new ModelAndView("registration");
+    	return registerPage;
+    }
     
 
     // Process form submission from forgotPassword page
@@ -148,9 +153,9 @@ public class MainController {
         }
 
     }
+    
 
-
-    @GetMapping(path = "/registration") // Map ONLY GET Requests
+    @GetMapping(path = "/home") // Map ONLY GET Requests
     public @ResponseBody
     String addNewUser(@RequestParam String name
             , @RequestParam String email, @RequestParam String password) {

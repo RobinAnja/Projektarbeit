@@ -1,21 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
   <title> ANMELDUNG </title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" th:href="@{/demo/styles.css}" />
+	<script type="text/javascript" src=".../js/login.js"></script>
 </head>
 <body oncontextmenu= "return false"">  
  <div class="form">
     <img src="osi.jpg" class="learning">
 	 <h2> FunTestic</h2>
        <h1>Anmelden</h1>
-	   <form>
+	   <form class="p">
 		 <input type="text" placeholder="Benutzername" name="userid" value="">
 		 <input type="password" placeholder="Passwort" name="pswd" value="">
 		 <input type="submit" onclick="check(this.form)" value="Anmelden">
 		 <a href="passwortVergeseen.html">Kennwort vergessen?</a><br>
-		 <a href="registrieren.html">Noch nicht registriert?</a>
+		 <a href="registration.html">Noch nicht registriert?</a>
 	   </form>
  </div>
  
