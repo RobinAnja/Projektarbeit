@@ -1,0 +1,10 @@
+hello\Repository\CreateTestRepository.class
+hello\Repository\UserRepository.class
+hello\Models\Subject.class
+hello\Repository\SubjectRepository.class
+hello\Models\User.class
+hello\WebSecu\WebSecurityConfig.class
+hello\Repository\SortingProcessRepository.class
+hello\WebSecu\WebConfiguration.class
+hello\Models\SortingProcess.class
+hello\Models\CreateTest.class
