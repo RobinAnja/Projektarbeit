@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
   <title>Insertion Sort Verfahren</title>
-    <link rel="stylesheet" type="text/css" href="styles5.css">
+    <link rel="stylesheet" th:href="@{/css/styles5.css}" />
 </head>
 <body>
     <div class="menu">
 	
 	  <div class ="leftmenu">
 	    <h1> FunTestic </h1>
-		<img src="osi.jpg" class="learning">
+		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
 	  <div class="rightmenu">
 	   <ul>
@@ -179,6 +179,7 @@
 		</tr>
 		
 	  </table>
+	  <script src="https://code.jquery.com/jquery-latest.js"></script>
 	  </body>
 	  </head>
 	  

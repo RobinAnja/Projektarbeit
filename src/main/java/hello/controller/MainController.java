@@ -74,6 +74,30 @@ public class MainController {
     	return homePage;
     }
     
+    @GetMapping("/AlgoDat")
+    public ModelAndView getAlgoDat() {
+    	ModelAndView AlgoDat = new ModelAndView("AlgoDat");
+    	return AlgoDat;
+    }
+    
+    @GetMapping("/Quicksort")
+    public ModelAndView getQuicksort() {
+    	ModelAndView Quicksort = new ModelAndView("Quicksort");
+    	return Quicksort;
+    }
+    
+    @GetMapping("/SelectionSort")
+    public ModelAndView getSelectionSort() {
+    	ModelAndView SelectionSort = new ModelAndView("SelectionSort");
+    	return SelectionSort;
+    }
+    
+    @GetMapping("/InsertionSort")
+    public ModelAndView getInsertionSort() {
+    	ModelAndView InsertionSort = new ModelAndView("InsertionSort");
+    	return InsertionSort;
+    }
+    
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody
