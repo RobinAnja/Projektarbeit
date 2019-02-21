@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
   <title> Profil </title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+     <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
   <div class="form">
-    <img src="osi.jpg" class="learning">
+    <img th:src="@{/images/osi.jpg}" class="learning">
 	 <h2> FunTestic</h2>
        <h1>Benutzerprofil</h1>
 	   <form>
@@ -28,5 +28,6 @@
 		  
 	   </form>
  </div>
+ <script src="https://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>

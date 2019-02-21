@@ -98,6 +98,36 @@ public class MainController {
     	return InsertionSort;
     }
     
+    @GetMapping("/Punkte")
+    public ModelAndView getPunkte() {
+    	ModelAndView punkte = new ModelAndView("punkte");
+    	return punkte;
+    }
+    
+    @GetMapping("/TestErstellen")
+    public ModelAndView getTestErstellen() {
+    	ModelAndView testErstellen = new ModelAndView("testErstellen");
+    	return testErstellen;
+    }
+    
+    @GetMapping("/BenutzerProfil")
+    public ModelAndView getBenutzerProfil() {
+    	ModelAndView BenutzerProfil = new ModelAndView("BenutzerProfil");
+    	return BenutzerProfil;
+    }
+    
+    @GetMapping("/ueberuns")
+    public ModelAndView getUeberuns() {
+    	ModelAndView ueberuns = new ModelAndView("ueberuns");
+    	return ueberuns;
+    }
+    
+    @GetMapping("/kontakt")
+    public ModelAndView getKontakt() {
+    	ModelAndView kontakt = new ModelAndView("kontakt");
+    	return kontakt;
+    }
+    
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody
