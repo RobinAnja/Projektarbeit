@@ -28,7 +28,9 @@ function fillFirstRow(){
         		var cell = data[i].toString();
         		firstRow[startIndex].innerHTML = cell;
         		startIndex = startIndex + 1;
-        	}	
+        	}
+        	
+        	console.log(getCorrectQuickSortArray(data));
         	}
         });
 };
@@ -187,7 +189,7 @@ function getUnsortedArray(){
 		array[i] = parseInt(firstRow[i].innerHTML);
 	}	
 	return array;
-}
+};
 
 function getCorrectQuickSortArray(array){
 	var index = 0;
@@ -209,42 +211,142 @@ function getCorrectQuickSortArray(array){
 		}	
 	}
 	return result;
-}
+};
 
 function correctQuickSort(){
 	var unsortedArray = getUnsortedArray();
 	
-	var correctResult = getCorrectQuickSortArray(array);
+	var correctResult = getCorrectQuickSortArray(unsortedArray,);
 	
-	correctUserResult(correctResult, 0, 2);
-}
+	var points = correctUserResult(correctResult, 0, 2, 9);
+	console.log("Points: " + points);
+};
 
-function correctUserResult(correctResult, index, type){
+function correctUserResult(correctResult, index, type, points){
+	console.log(correctResult);
 	var table = $("#sortTable");
 	var cells = table.find('INPUT');
-	var wrongCell = false; 
+	var cellsVisuals = table.find('td');
 	var mod = 12;
+	var lineIsResult = false;
+	
 	if(type == 1){
 		mod=11;
 	}else if(type == 2){
 		mod=9;
 	}
 	
-	console.log(mod);
-	
-	for(var i = index; i < correctResult.length; i++){
-		if((i % mod == 0) && wrongCell){
-			var array = [];
-			var j = 0;
-			for (var k = index; k < index + mod; k++){
-				array[j] = cells[k].value;
-				j++;
+	for(var i = 0; i < correctResult.length; i++){
+		if(cells[index].value){
+			if((correctResult.includes(parseInt(cells[index].value)))){
+			if(cells[index].value != correctResult[i]){
+				if(index == 0){
+					points = 0; 
+					console.log("cell 0 falsch")
+					return points;
+				}else{
+					if(checkForResult(correctResult, cells, mod, index)){
+						if(index == 0){
+							points = 0;
+							console.log("Der Algorithmus ist von Bedeutung, nicht das Ergebnis!")
+							return points;
+						
+						}
+						//Check if last steps deliver the same result (unneccessary for user because of double rowresults)
+						var backstep = 0;
+						var resultRow = true;
+						
+						while (resultRow){
+							
+							var count = (correctResult.length - (mod*(backstep + 1))) - 1;
+							var countpreviousRow = count - mod; 
+							var runs = count;
+							
+							for (countpreviousRow; countpreviousRow < runs; countpreviousRow++){
+							if(correctResult[countpreviousRow]){
+								if(correctResult[countpreviousRow] != correctResult[count]){
+								resultRow = false;
+								backstep--;
+								}
+							}
+							count++;
+							}
+							backstep++;
+						}
+						
+						
+												
+						var missingSteps = parseInt((((correctResult.length - (index + 1))/mod))) - backstep;
+						if(missingSteps > 0){console.log("You missed steps: " + missingSteps);}
+						points = points - missingSteps;
+						if (points < 0){points = 0;};
+						console.log("test");
+						return parseInt(points);
+						}		
+					console.log("wrong cell: " + index + " value: " + cells[index].value);
+					cellsVisuals[index].style.color = 'red';
+					var array = [];
+					var j = 0;
+					
+					//check for actual row to be complete
+					for (var k = (index/mod); k < ((index/mod) + mod -1); k++){
+						if(cells[k].value){
+							array[j] = cells[k].value;
+							j++;
+						}else{
+							console.log("Nicht vollständig gelöst");
+							return parseInt(points);
+						}
+					}
+					
+					index = (index/mod) + mod; 
+					points = points - (((correctResult.length - (index + 1))/9) + 1);
+					if (points < 0){
+						points = 0;
+						console.log("test");
+						return parseInt(points); 
+						}
+					correctUserResult(getCorrectQuickSortArray(array), index, type, points);
+				
+				}
+			}else{
+				cellsVisuals[index].style.color = 'white';
 			}
-			correctUserResult(getCorrectQuickSortArray(array), i, type);
-		} 
-		if(cells[i].value !== correctResult[i]){
-			wrongCell = true; 
+			}else{
+				var missingSteps = parseInt((mod -parseInt((index + 1)/mod)));
+				points = points - missingSteps;
+				if (points < 0){points = 0;};
+				console.log("Zu sortierendes Array enthält den Wert " + cells[index].value + " der Zelle " + (index % 9) + " in Zeile " + (index/9) +" nicht.");
+				cellsVisuals[index].style.color = 'red';
+				return parseInt(points);
+			}
+		
+			}else{
+			var missingSteps = parseInt((mod - parseInt(index/mod)));
+			points = points - missingSteps;
+			if (points < 0){points = 0;};
+			console.log("Nicht vollständig gelöst. missingSteps: " + missingSteps);
+			return parseInt(points);
 		}
-	}
-}
+		index++;
+		}
+		
 
+	console.log("Correct Result");
+	return parseInt(points);
+};
+
+
+function checkForResult(correctResult, cells, mod, index){
+	var count = correctResult.length - (mod);
+	for (var k = (index - (index % (mod-1))); k < ((index/mod) + mod -1); k++){
+		if(cells[k].value){
+			if(cells[k].value != correctResult[count]){
+			return false;
+			}
+			
+		}
+		count++;
+	}
+	return true;
+}
