@@ -2,7 +2,7 @@ $(document).ready(function () {
 
 	var init = true;
 	if(init){
-		fillFirstRow()
+		fillFirstRow();
 		init = false;
 		}
 	
@@ -140,6 +140,7 @@ function selectionSort(){
 		otherRow[rowStart].innerHTML = count.toString();
 		rowStart = rowStart + 1;
 	}
+};
 
 function quickSort() {
 	 
@@ -179,5 +180,4 @@ function quickSort() {
 			rowStart = rowStart + 1;
 		}	
 	}
-}
 }
