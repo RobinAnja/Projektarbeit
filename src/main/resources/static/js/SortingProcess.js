@@ -44,7 +44,7 @@ function insertionSort() {
 	
 	//get result array positions
 	var resultArray = $("#sortTable");
-	var otherRow = resultArray.find('td');
+	var otherRow = resultArray.find('INPUT');
 	var rowStart = 0;
 	
 	//create Integer start array
@@ -78,18 +78,18 @@ function insertionSort() {
 		console.log(i);
 		
 		//fill row after row
-		otherRow[rowStart].innerHTML = i.toString();
+		otherRow[rowStart].value = i.toString();
 		rowStart = rowStart + 1;
-		otherRow[rowStart].innerHTML = firstNumb.toString();
+		otherRow[rowStart].value = firstNumb.toString();
 		rowStart = rowStart + 1;
 		
 		for(var k= 0; k < 9; k++)
 		{
 			var cell = array[k];
-			otherRow[rowStart].innerHTML = cell.toString();
+			otherRow[rowStart].value = cell.toString();
 			rowStart = rowStart + 1;
 		}	 
-		otherRow[rowStart].innerHTML = count.toString();
+		otherRow[rowStart].value = count.toString();
 		rowStart = rowStart + 1;
 	}
 	
@@ -113,8 +113,8 @@ function selectionSort(){
 
 	//get result array positions
 	var resultArray = $("#sortTable");
-	var otherRow = resultArray.find('td');
-	console.log(otherRow);
+	var otherRow = resultArray.find('INPUT');
+
 	var rowStart = 0;
 	var count = 0;
 	
@@ -129,15 +129,15 @@ function selectionSort(){
 					
 		}
 		//fill row after row
-		otherRow[rowStart].innerHTML = i.toString();
+		otherRow[rowStart].value = i.toString();
 		rowStart = rowStart + 1;
 		for(var k= 0; k < 9; k++)
 		{
 			var cell = array[k];
-			otherRow[rowStart].innerHTML = cell.toString();
+			otherRow[rowStart].value = cell.toString();
 			rowStart = rowStart + 1;
 		}	
-		otherRow[rowStart].innerHTML = count.toString();
+		otherRow[rowStart].value = count.toString();
 		rowStart = rowStart + 1;
 	}
 };
@@ -158,10 +158,10 @@ function quickSort() {
 
 	//get result array positions
 	var resultArray = $("#sortTable");
-	var otherRow = resultArray.find('td');
+	var otherRow = resultArray.find('INPUT');
 	var rowStart = 0;
 	var count = 0;
-	
+
 	for (var i = 0; i < array.length - 1; i++) {
 		for (var j = i + 1; j < array.length; j++) {
 			if (array[i] > array[j]) {
@@ -176,7 +176,7 @@ function quickSort() {
 		for(var k= 0; k < 9; k++)
 		{
 			var cell = array[k];
-			otherRow[rowStart].innerHTML = cell.toString();
+			otherRow[rowStart].value = cell.toString();
 			rowStart = rowStart + 1;
 		}	
 	}
