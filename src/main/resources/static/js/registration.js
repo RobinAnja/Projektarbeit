@@ -2,16 +2,16 @@
 $(document).ready(function () {
 
     $("#RegisterForm").submit(function (event) {
-
+    	var email = $("#email").val();
         var password = $("#password").val();
         var passwordCompare = $("#passwordCompare").val();
         //stop submit the form, we will post it manually.
         event.preventDefault();
         
         if(password == passwordCompare){
-        	//if(ValidateEmail(email)){
+        	if(ValidateEmail(email)){
         		register();
-        	
+        	}
         }else{
         	alert("Passwords are different");
         }

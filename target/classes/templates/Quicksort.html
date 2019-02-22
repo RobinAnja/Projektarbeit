@@ -21,8 +21,8 @@
 	  </div>
 	  </div>
 	  <h3> Wenden Sie auf die gegebene Zahlenfolge das Quicksort Verfahren (Vergleichselement = feld_ref[(lb+ub) DIV 2]) an. Geben Sie bei jedem Sortierschritt die entstandene Zahlenfolge an, und kennzeichnen Sie die Vertauschungen. Geben Sie die Aufrufe der Prozedur quick(feld_ref,lb,ub) mit den Aktualparametern an. </h3>
-	  
-	  <table>
+	  <input id="CorrectButton" type="submit" onclick="quickSort()" value="Lösung">
+	  <table id="sortTable">
 	    <tr>
 		    <th>21</th>
 			<th>53</th>
@@ -167,5 +167,6 @@
 		
 	  </table>
 	 <script src="https://code.jquery.com/jquery-latest.js"></script>
+	 <script type="text/javascript" th:src="@{/js/SortingProcess.js}"></script>
 	  </body>
 	  </head>

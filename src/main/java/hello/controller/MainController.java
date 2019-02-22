@@ -56,12 +56,13 @@ public class MainController {
         mailSender.send(email);
     }
 
-    @GetMapping("/anmelden")
-    public ModelAndView getLogin() {
-    	ModelAndView loginPage = new ModelAndView("anmelden");
-    	return loginPage;
+    @GetMapping("/{id}")
+    public ModelAndView getLogin(@PathVariable("id") String id) {
+    	ModelAndView page = new ModelAndView(id);
+    	return page;
     }
     
+    /*
     @GetMapping("/registration")
     public ModelAndView getRegistration() {
     	ModelAndView registerPage = new ModelAndView("registration");
@@ -98,13 +99,13 @@ public class MainController {
     	return InsertionSort;
     }
     
-    @GetMapping("/Punkte")
+    @GetMapping("/punkte")
     public ModelAndView getPunkte() {
     	ModelAndView punkte = new ModelAndView("punkte");
     	return punkte;
     }
     
-    @GetMapping("/TestErstellen")
+    @GetMapping("/testErstellen")
     public ModelAndView getTestErstellen() {
     	ModelAndView testErstellen = new ModelAndView("testErstellen");
     	return testErstellen;
@@ -128,6 +129,7 @@ public class MainController {
     	return kontakt;
     }
     
+    */
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody

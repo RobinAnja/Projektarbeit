@@ -11,10 +11,10 @@
 	 <h2> FunTestic </h2>
 	 <h1>Registrieren</h1>
 	   <form id="RegisterForm" >
-		 <p><input type="text" id="username" placeholder="Benutzername" name="" value=""></p>
-		 <p><input type="text" id="email" placeholder="E-Mail" name="" value=""></p>
-		 <p><input type="password" id="password" placeholder="Passwort " name="" value=""></p>
-		 <p><input type="password" id="passwordCompare" placeholder="Passwort wiederholen" name="" value=""></p>
+		 <p><input type="text" id="username" placeholder="Benutzername" name="" value="" required minlength=6 maxlength="12"></p>
+		 <p><input type="text" id="email" placeholder="E-Mail" name="" value="" required minlength=6></p>
+		 <p><input type="password" id="password" placeholder="Passwort " name="" value="" required></p>
+		 <p><input type="password" id="passwordCompare" placeholder="Passwort wiederholen" name="" value="" required></p>
 		 <input type="submit" id="submitButton" th:href="@{/anmelden}" name="" value="Registrieren">
 	   	
 	  	</form>
