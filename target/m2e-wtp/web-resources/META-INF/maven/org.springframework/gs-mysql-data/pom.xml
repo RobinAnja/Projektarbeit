@@ -65,13 +65,13 @@
             <artifactId>mail</artifactId>
             <version>1.4.7</version>
         </dependency>
-        <!-- 
+   
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-jasper</artifactId>
             <scope>provided</scope>
         </dependency>
--->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -111,6 +111,16 @@
 		<version>1.16.16</version>
 		<scope>provided</scope>
 	</dependency>
+	        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>bootstrap</artifactId>
+            <version>3.3.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.webjars</groupId>
+            <artifactId>jquery</artifactId>
+            <version>3.2.1</version>
+        </dependency>
     </dependencies>
 
     <properties>

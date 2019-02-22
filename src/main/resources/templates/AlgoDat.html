@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
   <title>AlgoDat</title>
-    <link rel="stylesheet" type="text/css" href="styles4.css">
+    <link rel="stylesheet" th:href="@{/css/styles4.css}" />
 </head>
 <body>
     <div class="menu">
 	
 	  <div class ="leftmenu">
 	    <h1> FunTestic </h1>
-		<img src="osi.jpg" class="learning">
+		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
 	  <div class="rightmenu">
 	   <ul>
@@ -32,6 +32,7 @@
 	 <div class="Test3">
 	    <a href="Quicksort.html"> <h1>Quicksort Verfahren <h1></a>
 	</div> 
+		<script src="https://code.jquery.com/jquery-latest.js"></script>
 </body>  
 <html>
 	  

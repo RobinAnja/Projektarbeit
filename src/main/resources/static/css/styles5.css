@@ -79,8 +79,11 @@ color:#fff;
  h3{
  margin:15px;
  color: #F93;
-
 }  
+h4{
+margin:15px;
+color: #F93;
+}
 
 
 table{
@@ -91,21 +94,31 @@ table{
   width: 50%;
 }
 .table,td{
- border:1px;
+ border:100%;
  border-style:solid;
 }
 th {
-  background-color: #F93;
+ background-color:#f93;
   color: white;
-  height:50px;
+  height:0,1px;
 }
 td{
- color:#FFF;
+ color:white;
 
 }
 
 th, td {
-  border-bottom: 1px solid #FFF;
-  padding: 15px;
+  border-bottom:100% solid #FFF;
+  padding: 1px;
   text-align: left;
+}
+
+input{
+border:none;
+outline:none;
+background:transparent; 
+outline:none;
+height:100%;
+width:100%;
+color:#F93;
 }

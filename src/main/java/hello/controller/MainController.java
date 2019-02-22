@@ -56,14 +56,80 @@ public class MainController {
         mailSender.send(email);
     }
 
-    @GetMapping("/login")
-    public ModelAndView getLogin() {
-    	ModelAndView loginPage = new ModelAndView("anmelden");
-    	return loginPage;
+    @GetMapping("/{id}")
+    public ModelAndView getLogin(@PathVariable("id") String id) {
+    	ModelAndView page = new ModelAndView(id);
+    	return page;
     }
     
+    /*
+    @GetMapping("/registration")
+    public ModelAndView getRegistration() {
+    	ModelAndView registerPage = new ModelAndView("registration");
+    	return registerPage;
+    }
     
-
+    @GetMapping("/home")
+    public ModelAndView getHome() {
+    	ModelAndView homePage = new ModelAndView("home");
+    	return homePage;
+    }
+    
+    @GetMapping("/AlgoDat")
+    public ModelAndView getAlgoDat() {
+    	ModelAndView AlgoDat = new ModelAndView("AlgoDat");
+    	return AlgoDat;
+    }
+    
+    @GetMapping("/Quicksort")
+    public ModelAndView getQuicksort() {
+    	ModelAndView Quicksort = new ModelAndView("Quicksort");
+    	return Quicksort;
+    }
+    
+    @GetMapping("/SelectionSort")
+    public ModelAndView getSelectionSort() {
+    	ModelAndView SelectionSort = new ModelAndView("SelectionSort");
+    	return SelectionSort;
+    }
+    
+    @GetMapping("/InsertionSort")
+    public ModelAndView getInsertionSort() {
+    	ModelAndView InsertionSort = new ModelAndView("InsertionSort");
+    	return InsertionSort;
+    }
+    
+    @GetMapping("/punkte")
+    public ModelAndView getPunkte() {
+    	ModelAndView punkte = new ModelAndView("punkte");
+    	return punkte;
+    }
+    
+    @GetMapping("/testErstellen")
+    public ModelAndView getTestErstellen() {
+    	ModelAndView testErstellen = new ModelAndView("testErstellen");
+    	return testErstellen;
+    }
+    
+    @GetMapping("/BenutzerProfil")
+    public ModelAndView getBenutzerProfil() {
+    	ModelAndView BenutzerProfil = new ModelAndView("BenutzerProfil");
+    	return BenutzerProfil;
+    }
+    
+    @GetMapping("/ueberuns")
+    public ModelAndView getUeberuns() {
+    	ModelAndView ueberuns = new ModelAndView("ueberuns");
+    	return ueberuns;
+    }
+    
+    @GetMapping("/kontakt")
+    public ModelAndView getKontakt() {
+    	ModelAndView kontakt = new ModelAndView("kontakt");
+    	return kontakt;
+    }
+    
+    */
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody
@@ -148,26 +214,29 @@ public class MainController {
         }
 
     }
+    
 
-
-    @GetMapping(path = "/registration") // Map ONLY GET Requests
+    @GetMapping(path = "/register") // Map ONLY GET Requests
     public @ResponseBody
-    String addNewUser(@RequestParam String name
-            , @RequestParam String email, @RequestParam String password) {
+    boolean addNewUser(@RequestParam("username") String name
+            , @RequestParam("email") String email, @RequestParam("password") String password) {
         // @ResponseBody means the returned String is the response, not a view name
         // @RequestParam means it is a parameter from the GET or POST request
-
-        User n = new User();
-        n.setName(name);
-        n.setEmail(email);
-        n.setEncryptedPassword(passwordEncoder.encode(password));
-        userRepository.save(n);
-        return "home";
+    	try{
+    		User n = new User();
+            n.setName(name);
+            n.setEmail(email);
+            n.setEncryptedPassword(passwordEncoder.encode(password));
+            userRepository.save(n);
+            return true;
+    	}catch(Exception e) {
+    		return false;
+    	}  	
     }
 
     @GetMapping(path = "/findByUsername")
     public @ResponseBody
-    boolean findUserByUsername(@RequestParam(value="name") String username, @RequestParam(value="password") String password) {
+    boolean findUserByUsername(@RequestParam(value="username") String username, @RequestParam(value="password") String password) {
         // This returns a JSON or XML with the users
         List<User> list = userRepository.findAll();
         for (User user : list) {

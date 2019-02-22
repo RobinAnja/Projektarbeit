@@ -1,22 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
   <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../../resources/css/styles2.css">
+    <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 </head>
 <body>
     <div class="menu">
 	
 	  <div class ="leftmenu">
 	    <h1> FunTestic </h1>
-		<img src="../../images/osi.jpg" class="learning">
+		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
 	  <div class="rightmenu">
 	   <ul>
 	     <li id="fisrtlist"> Home </li>
-		 <li> <a href="ueberuns.jsp">Über uns </a></li>
-		 <li> <a href="kontakt.jsp">Kontakt</a></li>
+		 <li> <a href="ueberuns.html">Über uns </a></li>
+		 <li> <a href="kontakt.html">Kontakt</a></li>
 	   </ul>
 	  </div>
 	  
@@ -30,25 +30,26 @@
 		  <a href="punkte.html"><button type="button" >Punkte</button></a>
 		  </div>
 		  <div class="btn3">
-		  <a href="testErstelen.html"><button type="button" >Test erstellen</button></a>
+		  <a href="testErstellen.html"><button type="button" >Test erstellen</button></a>
 		  </div>
 		   <div class="btn4">
-		  <a href="Benutzerprofil.html"><button type="button" >Benutzerprofil</button></a>
+		  <a href="BenutzerProfil.html"><button type="button" >Benutzerprofil</button></a>
 		  </div>
 	     </div>
 	   </div>
 	</div>
 	
 	<div class="formAlgo">
-	<img src="algo.png" class="kartinka">
+	<img th:src="@{/images/algo.png}" class="kartinka">
      <a href="AlgoDat.html"> <h1>Algorithmen und Datenstrukturen<h1></a>
 	</div>
 	
 
 	
 	<div class="formSe">
-	<img src="se.png" class="kartinka">
+	<img th:src="@{/images/se.png}" class="kartinka">
       <a href="se.html"><h1>Software Engineering<h1></a>
 	</div>
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>
