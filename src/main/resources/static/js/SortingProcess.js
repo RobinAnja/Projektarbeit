@@ -222,6 +222,11 @@ function correctQuickSort(){
 	console.log("Points: " + points);
 };
 
+
+// correctresult: richtiges Ergebnis
+// index: startindex (wichtig wegen internem Aufruf der Methode mit anderem Startindex)
+// type: 0 = Insertionsort, 1 = selectionSort, 2 = Quicksort
+// points: punkte für Aufgabe. Entsprechen der Anzahl der durchläufe
 function correctUserResult(correctResult, index, type, points){
 	console.log(correctResult);
 	var table = $("#sortTable");
