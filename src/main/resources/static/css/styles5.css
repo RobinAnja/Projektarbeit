@@ -122,3 +122,34 @@ height:100%;
 width:100%;
 color:#F93;
 }
+
+.btn1 button{
+ top:90%;
+ right:2%;
+ position: absolute;
+ background:none;
+ color:#F93;
+ width:100px;
+ height:50px;
+ border:1px solid #FFF;
+ font-size: 18px;
+ border-radius:4px;
+ transition:.6s;
+ overflow:hidden;
+}
+
+.btn2 button{
+ top:90%;
+ right:12%;
+ position: absolute;
+ background:none;
+ color:#F93;
+ width:100px;
+ height:50px;
+ border:1px solid #FFF;
+ font-size: 18px;
+ border-radius:4px;
+ transition:.6s;
+ overflow:hidden;
+}
+
