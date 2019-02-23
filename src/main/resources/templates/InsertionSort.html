@@ -21,7 +21,7 @@
 	  </div>
 	  </div>
 	  <h3> Sortieren Sie folgende Schlüsselfolge mit dem Insertion Sort Verfahren (Verwenden Sie die Variante 1 zum Einsparen des Vergleiches ‘j > 0’). Geben Sie bei jedem Sortierschritt den Wert von i, den Wert von feld_ref[0], die momentan aktuelle Zahlenfolge und die Anzahl M der Komponenten-Bewegungen innerhalb der WHILE-Schleife an. </h3>
-	  <h4> 10 Punkte <h4>
+	  <h4 id="pointsText">0 / 9 Punkte <h4>
 	  <table id="sortTable">
 	 	
 	
@@ -182,16 +182,16 @@
 
 		</table>
 	<div class="btn1">
-		<button type="button" id="CorrectButton"  onclick="InsertionSort()" >Korrektur </button>
+		<button type="button" id="CorrectButton"  onclick="CorrectUserSort()" >Korrektur </button>
 		</div>
         <div class="btn2">
-		<button type="button" id="resultButton"  onclick="CorrectInsertionSort()" > Resultat </button>
+		<button type="button" id="resultButton"  onclick="GetResultTable()" > Musterergebnis </button>
 		</div>
 	  <div class="btn3">
 		  <a href="Insertiontheorie.html"><button type="button" > Insertionsort </button></a>
 		  </div>
 		  
-        <img src="info.png" class="info">
+        <img th:src="@{/images/info.png}" class="info">
 	  
 	  <script src="https://code.jquery.com/jquery-latest.js"></script>
 	  <script type="text/javascript" th:src="@{/js/SortingProcess.js}"></script>

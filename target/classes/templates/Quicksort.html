@@ -26,7 +26,7 @@
 		kennzeichnen Sie die Vertauschungen. Geben Sie die Aufrufe der
 		Prozedur quick(feld_ref,lb,ub) mit den Aktualparametern an. Für jede
 		richtige Zeile gibt es einen Punkt. Folgefehler werden berücksichtigt.</h3>
-	<h4>10 Punkte</h4>
+	<h4 id="pointsText"> 0 / 9 Punkte</h4>
 	<table id="sortTable">
 		<tr>
 			<th></th>
@@ -172,11 +172,11 @@
 	</table>
 
 	<div class="btn1">
-		<button type="button" id="CorrectButton" onclick="QuickSort()">Korrektur
+		<button type="button" id="CorrectButton" onclick="CorrectUserSort()">Korrektur
 		</button>
 	</div>
 	<div class="btn2">
-		<button type="button" id="resultButton" onclick="CorrectQuickSort()"" >
+		<button type="button" id="resultButton" onclick="GetResultTable()"" >
 			Resultat</button>
 	</div>
 	<div class="btn3">
@@ -184,7 +184,7 @@
 				Quicksort</button></a>
 	</div>
 
-	<img src="info.png" class="info">
+	<img th:src="@{/images/info.png}" class="info">
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
 	<script type="text/javascript" th:src="@{/js/SortingProcess.js}"></script>
 </body>
