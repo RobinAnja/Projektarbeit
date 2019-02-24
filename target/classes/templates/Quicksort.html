@@ -1,31 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
- <meta charset="UTF-8">
-  <title>Quicksort Verfahren</title>
-    <link rel="stylesheet" th:href="@{/css/styles5.css}" />
+<meta charset="UTF-8">
+<title>Quicksort Verfahren</title>
+<link rel="stylesheet" th:href="@{/css/styles5.css}" />
 </head>
 <body>
-    <div class="menu">
-	
-	  <div class ="leftmenu">
-	    <h1> FunTestic </h1>
-		<img th:src="@{/images/osi.jpg}" class="learning">
-	  </div>
-	  <div class="rightmenu">
-	   <ul>
-	     <li> <a href="home.html"> Home </a></li>
-		 <li> <a href="ueberuns.html"> Über uns </a></li>
-		 <li> <a href="kontakt.html">Kontakt</a></li>
-	   </ul>
-	  </div>
-	  </div>
-	  <h3> Wenden Sie auf die gegebene Zahlenfolge das Quicksort Verfahren (Vergleichselement = feld_ref[(lb+ub) DIV 2]) an. Geben Sie bei jedem Sortierschritt die entstandene Zahlenfolge an, und kennzeichnen Sie die Vertauschungen. Geben Sie die Aufrufe der Prozedur quick(feld_ref,lb,ub) mit den Aktualparametern an. </h3>
- 	<h4> 10 Punkte </h4>
-	  <input id="CorrectButton" type="submit" onclick="quickSort()" value="Lösung">
-	  <table id="sortTable">
-	    <tr>
-		    <th></th>
+	<div class="menu">
+
+		<div class="leftmenu">
+			<h1>FunTestic</h1>
+			<img th:src="@{/images/osi.jpg}" class="learning">
+		</div>
+		<div class="rightmenu">
+			<ul>
+				<li><a href="home.html"> Home </a></li>
+				<li><a href="ueberuns.html"> Über uns </a></li>
+				<li><a href="kontakt.html">Kontakt</a></li>
+			</ul>
+		</div>
+	</div>
+	<h3>Wenden Sie auf die gegebene Zahlenfolge das Quicksort
+		Verfahren (Vergleichselement = feld_ref[(lb+ub) DIV 2]) an. Geben Sie
+		bei jedem Sortierschritt die entstandene Zahlenfolge an, und
+		kennzeichnen Sie die Vertauschungen. Geben Sie die Aufrufe der
+		Prozedur quick(feld_ref,lb,ub) mit den Aktualparametern an. Für jede
+		richtige Zeile gibt es einen Punkt. Folgefehler werden berücksichtigt.</h3>
+	<h4 id="pointsText"> 0 / 9 Punkte</h4>
+	<table id="sortTable">
+		<tr>
 			<th></th>
 			<th></th>
 			<th></th>
@@ -34,140 +37,155 @@
 			<th></th>
 			<th></th>
 			<th></th>
+			<th></th>
 		</tr>
 		<tr>
-	      
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		   
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		 
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
 		</tr>
 		<tr>
-		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		  		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		   
-		  <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		  
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
 		<tr>
-		   
-		   <td> <input type="text" name="zahl1" value=""></td>
-		   <td><input type="text" name="zahl2" value=""> </td>
-		   <td> <input type="text" name="zahl3" value=""></td>
-		   <td> <input type="text" name="zahl4" value=""></td>
-		   <td> <input type="text" name="zahl5" value=""></td>
-		   <td><input type="text" name="zahl6" value=""> </td>
-		   <td><input type="text" name="zahl7" value=""> </td>
-		   <td><input type="text" name="zahl8" value=""> </td>
-		   <td><input type="text" name="zahl9" value=""> </td>
-		  
+
+			<td><input type="text" name="zahl1" value=""></td>
+			<td><input type="text" name="zahl2" value=""></td>
+			<td><input type="text" name="zahl3" value=""></td>
+			<td><input type="text" name="zahl4" value=""></td>
+			<td><input type="text" name="zahl5" value=""></td>
+			<td><input type="text" name="zahl6" value=""></td>
+			<td><input type="text" name="zahl7" value=""></td>
+			<td><input type="text" name="zahl8" value=""></td>
+			<td><input type="text" name="zahl9" value=""></td>
+
 		</tr>
-		
-	  </table>
-	 <script src="https://code.jquery.com/jquery-latest.js"></script>
-	 <script type="text/javascript" th:src="@{/js/SortingProcess.js}"></script>
-	  </body>
-	  </head>
-	  
+
+	</table>
+
+	<div class="btn1">
+		<button type="button" id="CorrectButton" onclick="CorrectUserSort()">Korrektur
+		</button>
+	</div>
+	<div class="btn2">
+		<button type="button" id="resultButton" onclick="GetResultTable()"" >
+			Resultat</button>
+	</div>
+	<div class="btn3">
+		<a href="Quicksorttheorie.html"><button type="button">
+				Quicksort</button></a>
+	</div>
+
+	<img th:src="@{/images/info.png}" class="info">
+	<script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" th:src="@{/js/SortingProcess.js}"></script>
+</body>
+</head>
