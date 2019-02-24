@@ -2,8 +2,10 @@ var global = this;
 var type; 				//Type of Sorting: 0: Insertion; 1: Selection; 2; Quick
 var firstRow;			//Array of Numbers which presents the first Row of Table
 var init = true; 		//Defines if its the first Opening of page (initialisation)
-var points = 9;			//Maximum points für test
+var points = 9;			//points für test
+var POINTS = 9;			//Constant value for maximum points
 var startOfArary = 0;	//Index of first number to Number of Array
+var mod = 9;			//length of Array (for % or / operations)
 
 //Initialisation process
 
@@ -20,14 +22,17 @@ $(document).ready(function () {
 		case 12: {
 			global.type = 0;
 			global.startOfArray = 2;
+			global.mod = 12;
 			break;}
 		case 11: {
 			global.type = 1;
 			global.startOfArray = 1;
+			global.mod = 11;
 			break;}
 		case 9: {
 			global.type = 2; 
 			global.startOfArray = 0;
+			global.mod = 9;
 			break;
 		}
 		}
@@ -126,7 +131,7 @@ function GetCorrectInsertionSortArray(run, array, changeCount){
 	var firstNumb;
 	var correctResult=[];
 	var index = 0;
-	var startIndex = parseInt(run) + 1;
+	var startIndex = 1;
 	var count = parseInt(changeCount);
 	var endIndex = array.length;
 	
@@ -134,42 +139,41 @@ function GetCorrectInsertionSortArray(run, array, changeCount){
 		startIndex+=2;
 		endIndex--;
 		}
-
-	console.log("startindex: "+startIndex + ", endIndex: "+ endIndex);
 	
+	var i = startIndex + parseInt(run);
+	console.log("startindex: "+(startIndex+run) + ", endIndex: "+ endIndex);
+	console.log(array);
 	// start sorting process
-	for(i = startIndex ; i < endIndex; i++){
+	for(i; i < endIndex; i++){
 		w = array[i];
 		firstNumb = w;
 		j = i - 1;
 		
 		while(w < array[j]){
-			console.log(array[j]);
+			if(j >= (startIndex - 1)){
+							console.log(array[j]);
 			console.log(w);
-			
-			array[j+1] = array[j];
-			if (j>= (startIndex - 1)){
+            array[j+1] = array[j];
+
 				j = j - 1;
-			}else{
-				break;
-			}
-			
+	
 			
 			count++;
 			console.log(count);
 			console.log(j);
+			}
 		}
 		array[j+1] = w;
 		
 		
-		correctResult[index] = i;
+		correctResult[index] = ((i+1)-startIndex);
 		index++;
 		correctResult[index] = firstNumb;
 		index++;
-		var c = 0;
-		if(run>0){c+=2;}
+		var forCount = 0;
+		if(run>0){forCount+=2;}
 		
-		for(c; c < c + 9; c++)
+		for(var c = forCount; c < forCount + 9; c++)
 		{
 
 			correctResult[index] = array[c];
@@ -178,17 +182,17 @@ function GetCorrectInsertionSortArray(run, array, changeCount){
 		
 		correctResult[index] = count;
 		index++;
-		console.log(correctResult);
+		
 	}
-
+console.log(correctResult);
 	return correctResult;
 };
 
 function GetCorrectSelectionSortArray(run, array, count){
 	var index = 0;
 	var count = count;
-	var startIndex = parseInt(run) ;
-	var endIndex = array.length;
+	var startIndex = parseInt(run);
+	var endIndex = startIndex + parseInt(global.POINTS);
 	var correctResult =  [];
 	
 
@@ -201,24 +205,25 @@ function GetCorrectSelectionSortArray(run, array, count){
 	console.log(startIndex);
 	console.log(endIndex);
 	console.log(run);
-		for (startIndex; startIndex < endIndex; startIndex++) {
-		for (var j = startIndex + 1; j < endIndex; j++) {
-			if (array[startIndex] > array[j]) {
-				var temp = array[startIndex];
-				array[startIndex] = array[j];
+	
+		for (var i = startIndex; i < endIndex - 1; i++) {
+		for (var j = i + 1; j < endIndex; j++) {
+			if (array[i] > array[j]) {
+				var temp = array[i];
+				array[i] = array[j];
 				array[j] = temp;
 				count++;
 			}
 					
 		}
 		
-		correctResult[index] = startIndex;
+		correctResult[index] = i;
 		index++;
 		
-		var k = 0; 
-		if(run>0){k=1;}
+		var arrayStart = 0; 
+		if(run>0){arrayStart=1;}
 		
-		for(k; k < array.length; k++)
+		for(var k = arrayStart; k < arrayStart + global.POINTS; k++)
 		{
 			correctResult[index] = array[k];
 			index++;
@@ -300,9 +305,9 @@ function correctArray(correctResult, index, type, points){
 							// Check if last steps deliver the same result
 						// (unneccessary for user because of double rowresults)
 							console.log("wrong cell");
-						var notNecessarySteps = countNotNecessarySteps();
+						var notNecessarySteps = countNotNecessarySteps(correctResult);
 												
-						var missingSteps = parseInt((((correctResult.length - (i + 1))/mod))) - notNecessarySteps;
+						var missingSteps = (global.POINTS - ((i/global.mod) + 1 - global.startOfArray)) - notNecessarySteps;
 						if(missingSteps > 0){console.log("You missed steps: " + missingSteps);}
 						global.points = global.points - missingSteps;
 						if (global.points < 0){global.points = 0;};
@@ -367,9 +372,10 @@ function correctArray(correctResult, index, type, points){
 		
 			}else{	
 			
-			var missingSteps = parseInt((mod - parseInt(i/mod)));
+			var missingSteps = global.POINTS - ((i/global.mod) + 1 - global.startOfArray);
 			global.points = global.points - missingSteps;
 			if (global.points < 0){global.points = 0;};
+			console.log(global.POINTS);
 			console.log("Nicht vollständig gelöst. missingSteps: " + missingSteps);
 			return parseInt(global.points);
 		}
@@ -393,7 +399,7 @@ function checkForOtherErrorsInRow(mod, index, compareIndex, cells, correctResult
 	}
 }
 
-function countNotNecessarySteps(){
+function countNotNecessarySteps(correctResult){
 
 	var backstep = 0;
 	var resultRow = true;
@@ -420,18 +426,19 @@ function countNotNecessarySteps(){
 
 function checkForResult(correctResult, cells, mod, index){
 	console.log("checkForResult");
-	console.log(correctResult.length - (mod + 1));
+	console.log(correctResult.length - mod);
 	console.log(correctResult.length)
 	
 
 	for (var k = correctResult.length - mod; k < correctResult.length; k++){
+		console.log("cell: "+cells[index].value+". result: "+correctResult[k]);
 		if(cells[index].value){
 			if(cells[index].value != correctResult[k]){
 			return false;
 			}
 			
 		}
-		console.log("cell: "+cells[index].value+". result: "+correctResult[k]);
+		
 		index++;
 	}
 	return true;
