@@ -1,12 +1,12 @@
 var global = this;
-var type; 				//Type of Sorting: 0: Insertion; 1: Selection; 2; Quick
+var type = 0; 				//Type of Sorting: 0: Insertion; 1: Selection; 2; Quick
 var firstRow;			//Array of Numbers which presents the first Row of Table
 var init = true; 		//Defines if its the first Opening of page (initialisation)
 var points = 9;			//points für test
 var POINTS = 9;			//Constant value for maximum points
 var startOfArary = 0;	//Index of first number to Number of Array
 var mod = 9;			//length of Array (for % or / operations)
-
+var mainArrayLength = 9; //length of the sorted array (without i, feld_ref[0], M)
 //Initialisation process
 
 $(document).ready(function () {
@@ -45,17 +45,19 @@ $(document).ready(function () {
 	
 });
 
+//fills first row of table with received data from database
 function fillFirstRow(){
 	$.ajax({
         type:'GET',
         url: "/demo/randomArrayNumbers",
         success: function(data){
+        	global.mainArrayLength = data.length;
         	var index = global.startOfArray;
         	var row = global.firstRow;
-        	for(var i = 0; i < 9; i++)
+        	for(var i = 0; i < data.length; i++)
         	{
         		var cell = data[i].toString();
-        		
+     		
         		row[index].innerHTML = cell;
         		index = index + 1;
         	}   	
@@ -63,8 +65,7 @@ function fillFirstRow(){
         });
 };
 
-// Click of Restart Button 
-
+// Click of Restart Button: Generates new array from values from database and clears the table from user inputs
 function GetNewSortArray(){
 
 	var table = $("#sortTable");
@@ -83,8 +84,7 @@ function GetNewSortArray(){
 };
 
 
-//Click of Result Button
-
+//Click of Result Button: fills the table with result values
 function GetResultTable() {
 	 
 	var correctResult = sortArray();
@@ -93,7 +93,7 @@ function GetResultTable() {
 	$("#CorrectButton").css('color','grey');
 };
 
-	
+//Puts result values into inputs (cells) in table
 function insertResultToTable(result){
 	// get result array positions
 	var table = $("#sortTable");
@@ -105,28 +105,26 @@ function insertResultToTable(result){
 };
 
 
-//Correct Button Click
-
+//Correct Button Click: Compares the user input with the result
 function CorrectUserSort(){
 
 		var correctResult = sortArray();
-		var points = correctArray(correctResult, 0, global.type, global.points);
-		$("#pointsText")[0].innerHTML = (points.toString() + " / "+global.POINTS+" Punkte");
+		correctArray(correctResult, 0, global.type, global.points);
+		$("#pointsText")[0].innerHTML = (global.points.toString() + " / "+global.POINTS+" Punkte");
 		$("#CorrectButton").prop("disabled",true);
 		$("#CorrectButton").css('color','grey');
-		console.log(points);
-		console.log($("#CorrectButton").disabled);
 };
 
+//sorts the array from first row depending on the type of sort algorithm
 function sortArray(){
 	// get start array
 
 	var startIndex = global.startOfArray;
 	var firstRow = global.firstRow;
-	var array = new Array(9);
+	var array = new Array(global.mainArrayLength);
 	
 	// create Integer start array
-	for(var i=0; i < 9; i++)
+	for(var i=0; i < array.length; i++)
 	{
 		array[i] = parseInt(firstRow[startIndex].innerHTML);
 		startIndex++;
@@ -141,7 +139,7 @@ function sortArray(){
 	return array;
 };
 
-
+//sort algorithm "InsertionSort". Returns the values for input fields in table
 function GetCorrectInsertionSortArray(run, array, changeCount){
 
 	var w;
@@ -183,7 +181,7 @@ function GetCorrectInsertionSortArray(run, array, changeCount){
 		var forCount = 0;
 		if(run>0){forCount+=2;}
 		
-		for(var c = forCount; c < forCount + 9; c++)
+		for(var c = forCount; c < forCount + global.mainArrayLength; c++)
 		{
 
 			correctResult[index] = array[c];
@@ -197,11 +195,12 @@ function GetCorrectInsertionSortArray(run, array, changeCount){
 	return correctResult;
 };
 
+//sort algorithm "SelectionSort". Returns the values for input fields in table
 function GetCorrectSelectionSortArray(run, array, count){
 	var index = 0;
 	var count = count;
 	var startIndex = parseInt(run);
-	var endIndex = startIndex + firstRow.length;
+	var endIndex = startIndex + global.POINTS;
 	var correctResult =  [];
 	
 	if (run>0){
@@ -209,7 +208,7 @@ function GetCorrectSelectionSortArray(run, array, count){
 		endIndex--;
 		}
 	
-		for (var i = startIndex; i < endIndex - 2; i++) {
+		for (var i = startIndex; i < endIndex; i++) {
 		for (var j = i + 1; j < endIndex; j++) {
 			if (array[i] > array[j]) {
 				var temp = array[i];
@@ -226,7 +225,7 @@ function GetCorrectSelectionSortArray(run, array, count){
 		var arrayStart = 0; 
 		if(run>0){arrayStart=1;}
 		
-		for(var k = arrayStart; k < arrayStart + firstRow.length -2; k++)
+		for(var k = arrayStart; k < arrayStart + global.mainArrayLength; k++)
 		{
 			correctResult[index] = array[k];
 			index++;
@@ -239,7 +238,7 @@ function GetCorrectSelectionSortArray(run, array, count){
 };
 
 
-
+//sort algorithm "QuickSort". Returns the values for input fields in table
 function GetCorrectQuickSortArray(array){
 	var index = 0;
 	var result = [];
@@ -253,27 +252,24 @@ function GetCorrectQuickSortArray(array){
 			}
 					
 		}
-		for(var k= 0; k < 9; k++)
+		for(var k= 0; k < array.length; k++)
 		{
 			result[index] = array[k];
-			index = index + 1;
+			index++;
 		}	
 	}
 	return result;
 };
 
 
-
-// correctresult: richtiges Ergebnis
-// index: startindex (wichtig wegen internem Aufruf der Methode mit anderem
-// Startindex)
-// type: 0 = Insertionsort, 1 = selectionSort, 2 = Quicksort
-// points: punkte für Aufgabe. Entsprechen der Anzahl der durchläufe
-function correctArray(correctResult, index, type, points){
+// compares the user input cells with the values from result array
+// correctresult: right result from methods above
+// index: index for comparison to start 
+function correctArray(correctResult, index){
 
 	var table = $("#sortTable");
 	var cells = table.find('INPUT');
-	var mod = 12;
+	var mod = global.mod;
 	var lineIsResult = false;
 	var compareIndex = 0;
 	var cellsVisuals = table.find('td');
@@ -281,12 +277,6 @@ function correctArray(correctResult, index, type, points){
 	console.log("cells: "+cells);
 	console.log("result: "+correctResult);
 	
-	if(type == 1){
-		mod=11;
-	}else if(type == 2){
-		mod=9;
-	}
-
 	for(var i = index; i < cells.length; i++){
 		if (index == cells.length){
 			break;
@@ -298,7 +288,7 @@ function correctArray(correctResult, index, type, points){
 					if(checkForResult(correctResult, cells, mod, i)){
 						if(i == 0){
 							global.points = 0;
-							return global.points;
+							return;
 						
 						}else{
 							
@@ -306,11 +296,11 @@ function correctArray(correctResult, index, type, points){
 						// (unneccessary for user because of double rowresults)
 
 						var notNecessarySteps = countNotNecessarySteps(correctResult);
-						var missingSteps = (global.firstRow.length - ((i/global.mod) + 1 - global.startOfArray)) - notNecessarySteps;
+						var missingSteps = global.POINTS - ((i/global.mod) + 1) - notNecessarySteps;
 						global.points = global.points - missingSteps;
 						if (global.points < 0){global.points = 0;};
 						cellsVisuals[index].style.color = 'white';
-						return parseInt(global.points);
+						return;
 						}
 						}else{
 					
@@ -325,20 +315,19 @@ function correctArray(correctResult, index, type, points){
 									array[j] = cells[k].value;
 									j++;
 								}else{
-									return parseInt(global.points);
+									return;
 								}
 							}
 							
 							checkForOtherErrorsInRow(mod, newIndex, compInd, cells, correctResult);
 							
 							global.points--;
-							console.log(points);
 							if (global.points < 0){
 								global.points = 0;
 							}
 							
 							if (cells[newIndex + mod].value){
-								switch(type){
+								switch(global.type){
 								case 0:
 									array = GetCorrectInsertionSortArray(cells[newIndex].value, array, cells[newIndex + mod - 1].value);
 									break;
@@ -350,10 +339,10 @@ function correctArray(correctResult, index, type, points){
 									break;
 							}
 							
-							correctArray(array, newIndex + mod, type, global.points);
+							correctArray(array, newIndex + mod);
 							break;
 							}else{
-								return parseInt(global.points);
+								return;
 							}		
 							
 						}
@@ -361,25 +350,26 @@ function correctArray(correctResult, index, type, points){
 			}else{
 				cellsVisuals[index].style.color = 'white';
 				if(checkForResult(correctResult, cells, mod, i)){
-					return global.points;
+					return;
 				}
 			}
 		
 			}else{	
 			
-			var missingSteps = global.firstRow.length - ((i/global.mod) + 1 - global.startOfArray);
+			var missingSteps = global.POINTS - (parseInt(i/global.mod));
 			console.log("Missing Steps: "+missingSteps);
 			global.points = global.points - missingSteps;
-			console.log(points);
+			console.log(global.points);
 			if (global.points < 0){global.points = 0;};
-			return parseInt(global.points);
+			return;
 		}
 		compareIndex++;
 		}
 
-	return parseInt(global.points);
+	return;
 };
 
+// checks for other errors in row, to paint the cells red
 function checkForOtherErrorsInRow(mod, index, compareIndex, cells, correctResult){
 	var table = $("#sortTable");
 	var cellsVisuals = table.find('td');
@@ -392,6 +382,7 @@ function checkForOtherErrorsInRow(mod, index, compareIndex, cells, correctResult
 	}
 }
 
+// counts the steps that are not important for points (if array at some point is the same as the result -> sorted array)
 function countNotNecessarySteps(correctResult){
 
 	var backstep = 0;
@@ -417,6 +408,7 @@ function countNotNecessarySteps(correctResult){
 	return backstep;
 };
 
+// checks if the current line is the result line of result array (that means that its the end line or user is missing steps)
 function checkForResult(correctResult, cells, mod, index){
 	
 	for (var k = correctResult.length - mod; k < correctResult.length; k++){
