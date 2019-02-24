@@ -39,7 +39,6 @@ $(document).ready(function () {
 		}
 		}
 		$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
-
 		fillFirstRow();
 		init = false;
 		}
@@ -53,7 +52,6 @@ function fillFirstRow(){
         success: function(data){
         	var index = global.startOfArray;
         	var row = global.firstRow;
-        	
         	for(var i = 0; i < 9; i++)
         	{
         		var cell = data[i].toString();
@@ -80,6 +78,8 @@ function GetNewSortArray(){
 	$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
 	//create new array in firstrow
 	fillFirstRow();
+	$("#CorrectButton").prop("disabled",false);
+	$("#CorrectButton").css('color','#F93');
 };
 
 
@@ -89,7 +89,8 @@ function GetResultTable() {
 	 
 	var correctResult = sortArray();
 	insertResultToTable(correctResult);
-	
+	$("#CorrectButton").prop("disabled",true);
+	$("#CorrectButton").css('color','grey');
 };
 
 	
@@ -111,7 +112,10 @@ function CorrectUserSort(){
 		var correctResult = sortArray();
 		var points = correctArray(correctResult, 0, global.type, global.points);
 		$("#pointsText")[0].innerHTML = (points.toString() + " / "+global.POINTS+" Punkte");
-		
+		$("#CorrectButton").prop("disabled",true);
+		$("#CorrectButton").css('color','grey');
+		console.log(points);
+		console.log($("#CorrectButton").disabled);
 };
 
 function sortArray(){
@@ -274,6 +278,9 @@ function correctArray(correctResult, index, type, points){
 	var compareIndex = 0;
 	var cellsVisuals = table.find('td');
 	
+	console.log("cells: "+cells);
+	console.log("result: "+correctResult);
+	
 	if(type == 1){
 		mod=11;
 	}else if(type == 2){
@@ -287,6 +294,7 @@ function correctArray(correctResult, index, type, points){
 		
 		if(cells[i].value){
 			if(cells[i].value != correctResult[compareIndex]){
+				console.log("cells["+i+"].value: "+cells[i].value+" != correctResult["+compareIndex+"]: "+correctResult[compareIndex]);
 					if(checkForResult(correctResult, cells, mod, i)){
 						if(i == 0){
 							global.points = 0;
@@ -324,6 +332,7 @@ function correctArray(correctResult, index, type, points){
 							checkForOtherErrorsInRow(mod, newIndex, compInd, cells, correctResult);
 							
 							global.points--;
+							console.log(points);
 							if (global.points < 0){
 								global.points = 0;
 							}
@@ -359,7 +368,9 @@ function correctArray(correctResult, index, type, points){
 			}else{	
 			
 			var missingSteps = global.firstRow.length - ((i/global.mod) + 1 - global.startOfArray);
+			console.log("Missing Steps: "+missingSteps);
 			global.points = global.points - missingSteps;
+			console.log(points);
 			if (global.points < 0){global.points = 0;};
 			return parseInt(global.points);
 		}
