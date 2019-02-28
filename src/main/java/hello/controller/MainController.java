@@ -57,7 +57,7 @@ public class MainController {
     }
 
     @GetMapping("/{id}")
-    public ModelAndView getLogin(@PathVariable("id") String id) {
+    public ModelAndView getPage(@PathVariable("id") String id) {
     	ModelAndView page = new ModelAndView(id);
     	return page;
     }

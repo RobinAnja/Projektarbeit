@@ -135,7 +135,7 @@ function sortArray(){
 	case 11: {array = GetCorrectSelectionSortArray(0, array, 0); break;}
 	case 9: {array = GetCorrectQuickSortArray(array); break;}
 	}
-
+	console.log(array);
 	return array;
 };
 
