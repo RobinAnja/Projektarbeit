@@ -209,6 +209,25 @@ color:#F93;
  font-family: 'Montserrat', sans-serif;
 }
 
+button{
+ margin: 5px 5px;
+ background:none;
+ color:#F93;
+ height:25px;
+ min-width:70px;
+ border:1px solid #FFF;
+ font-size: 15px;
+ border-radius:4px;
+ transition:.6s;
+ overflow:hidden;
+  font-size:16px;
+ font-family: 'Montserrat', sans-serif;
+}
+
+button.text{
+margin: 0px 5px;	
+}
+
 .info{
  width:40px;
  height:43px;
@@ -218,4 +237,34 @@ color:#F93;
  left:2%;
   font-size:16px;
  font-family: 'Montserrat', sans-serif;
+}
+
+.TextForm{
+
+ height:auto;
+ background:none;
+ color:#fff;
+ top:35%;
+ position:absolute;
+}
+
+.ButtonForm{
+
+ height:auto;
+ background:none;
+ color:#fff;
+ bottom:10%;
+ position:absolute;
+}
+
+.TextForm div, .ButtonForm div{
+margin:0;
+font-family: 'Montserrat', sans-serif;
+display:inline-block;
+list-style: none;
+font-size:16px;
+color: white;
+font-weight:bold;
+margin-left:30px;
+
 }
