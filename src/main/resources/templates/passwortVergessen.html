@@ -5,11 +5,11 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kennwort vergessen</title>
    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" type="text/css" href="../../resources/css/styles.css">
+    <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body onload='document.form1.Email.focus()'>
   <div class="form">
-   <img src="../../images/osi.jpg" class="learning">
+   <img th:src="@{/images/osi.jpg}" class="learning">
     <h2> FunTestic </h2>
     <h1>Bitte geben Sie Ihre E-Mail Adresse ein.</h1>
 	<form name="form1" action="#">

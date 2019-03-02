@@ -4,7 +4,7 @@
  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SE Test </title>
-    <link rel="stylesheet" type="text/css" href="styles5.css">
+    <link rel="stylesheet" th:href="@{/css/styles5.css}" />
 	<meta name="viewport" content="width=device-width">
 </head>
 <body>
@@ -12,7 +12,7 @@
 	
 	  <div class ="leftmenu">
 	    <h1> FunTestic </h1>
-		<img src="osi.jpg" class="learning">
+		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
 	  <div class="rightmenu">
 	   <ul>
@@ -23,6 +23,10 @@
 	   </ul>
 	  </div>
 	  </div>
+	  <form id="TextForm" action="">
+	  </form>
+	  <form id="ButtonForm" action="">
+	  </form>
 	  
 	  <div class="btn">
 		<button type="button" id="restartButton"  onclick="" > Neustart </button>
@@ -34,6 +38,7 @@
 	<div class="btn2">
 		<button type="button" id="resultButton"  onclick="" > Resultat </button>
 	</div>
-	  
+	 <script src="https://code.jquery.com/jquery-latest.js"></script>
+	 <script type="text/javascript" th:src="@{/js/LueckenText.js}"></script>
 </body>
 <html>	  
