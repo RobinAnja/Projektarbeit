@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Insertion Sort Verfahren</title>
     <link rel="stylesheet" th:href="@{/css/styles5.css}" />
+  <meta name="viewport" content="width=device-width">
 </head>
 <body>
     <div class="menu">
@@ -12,19 +14,18 @@
 	    <h1> FunTestic </h1>
 		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
-	  <div class="rightmenu">
+	 <div class="rightmenu">
 	   <ul>
 	     <li> <a href="home.html"> Home </a></li>
 		 <li> <a href="ueberuns.html">Über uns </a></li>
 		 <li> <a href="kontakt.html">Kontakt</a></li>
+		  <li > <a> Abmelden </a> </li>
 	   </ul>
 	  </div>
 	  </div>
 	  <h3> Sortieren Sie folgende Schlüsselfolge mit dem Insertion Sort Verfahren (Verwenden Sie die Variante 1 zum Einsparen des Vergleiches ‘j > 0’). Geben Sie bei jedem Sortierschritt den Wert von i, den Wert von feld_ref[0], die momentan aktuelle Zahlenfolge und die Anzahl M der Komponenten-Bewegungen innerhalb der WHILE-Schleife an. </h3>
-	  <h4 id="pointsText"><h4>
-	  <table id="sortTable">
-	 	
-	
+	  <h4 id="pointsText"></h4>
+	<table id="sortTable">
 	    <tr>
 		   <th>i</th>
 		   <th>feld_ref[0] </th>
@@ -179,7 +180,6 @@
 		   <td><input type="text" name="zahl9" value=""> </td>
 		    <td> <input type="text" name="M" value=""></td>
 		</tr>
-
 		</table>
 		  
        <div class="btn">

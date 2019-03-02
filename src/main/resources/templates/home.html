@@ -2,7 +2,9 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
-  <title>Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Home</title> 
+<meta name="viewport" content="width=device-width">
     <link rel="stylesheet" th:href="@{/css/styles2.css}" />
 </head>
 <body>
@@ -12,45 +14,52 @@
 	    <h1> FunTestic </h1>
 		<img th:src="@{/images/osi.jpg}" class="learning">
 	  </div>
-	  <div class="rightmenu">
+	   <div class="rightmenu">
 	   <ul>
 	     <li id="fisrtlist"> Home </li>
 		 <li> <a href="ueberuns.html">Über uns </a></li>
 		 <li> <a href="kontakt.html">Kontakt</a></li>
-		   <li > <a> Abmelden </a> </li>
+		 <li > <a> Abmelden </a> </li>
 	   </ul>
 	  </div>
-	  
-	  <div class="wrapper">
-	  <div class="btn1">
-	    <button type="button">Fächer</button> 
-		</div>
+	  </div>
+<div class="wrapper">
 		
+<section class="columns">
+	
+	<div class="column">
+		 <div class="btn1">
+	    <button type="button">Fächer</button>
+		</div>
 		 <div class="btn">
 		  <div class="btn2">
 		  <a href="punkte.html"><button type="button" >Punkte</button></a>
 		  </div>
 		  <div class="btn3">
-		  <a href="testErstelen.html"><button type="button" >Test erstellen</button></a>
+		  <a href="testErstellen.html"><button type="button" >Test erstellen</button></a>
 		  </div>
 		   <div class="btn4">
 		  <a href="BenutzerProfil.html"><button type="button" >Benutzerprofil</button></a>
 		  </div>
 	     </div>
-	   </div>
 	</div>
-	
+	<div class="column">
+		
 	<div class="formAlgo">
 	<img th:src="@{/images/algo.png}" class="kartinka">
      <a href="AlgoDat.html"> <h1>Algorithmen und Datenstrukturen<h1></a>
+	 </div>
 	</div>
-	
-
-	
-	<div class="formSe">
+  
+  <div class="column">
+  <div class="formSe">
 	<img th:src="@{/images/se.png}" class="kartinka">
-      <a href="se.html"><h1>Software Engineering<h1></a>
+     <a href="SE.html"><h1>Software Engineering<h1></a>
 	</div>
+	</div>
+</section>	
+
+</div>
 	<script src="https://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>

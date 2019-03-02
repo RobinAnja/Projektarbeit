@@ -1,4 +1,4 @@
-package hello;
+package hello.controller;
 
 import hello.Models.SortingProcess;
 import hello.Models.Subject;
@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.util.*;
@@ -53,6 +54,12 @@ public class MainController {
         mailSender.send(email);
     }
 
+
+    @GetMapping("/{id}")
+    public ModelAndView getPage(@PathVariable("id") String id) {
+    	ModelAndView page = new ModelAndView(id);
+    	return page;
+    }
 
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
@@ -369,13 +376,13 @@ public class MainController {
 
 
         // Strukturierung
-        String ersteSatz = "bedeutet, f¸r ein komplexes System eine reduzierte Darstellung zu finden, "
+        String ersteSatz = "bedeutet, f√ºr ein komplexes System eine reduzierte Darstellung zu finden, "
                 + "die den Charakter des Ganzen mit seinen spezifischen Merkmalen wiedergibt.";
         erste[0] = "Strukturierung ";
         erste[1] = ersteSatz;
 
         // Abstraktion
-        String zweiteSatz = "bedeutet die Verringerung der Komplexit‰t durch Vernachl‰ssigung von "
+        String zweiteSatz = "bedeutet die Verringerung der Komplexit√§t durch Vernachl√§ssigung von "
                 + "Nebenaspekten und Details.";
         zweite[0] = "Abstraktion ";
         zweite[1] = zweiteSatz;
@@ -396,17 +403,14 @@ public class MainController {
 
         // Geheimnisprinzip
 
-        String fuenfteSatz = "bedeutet, dass es f¸r den Benutzer einer funktionalen Abstraktion "
-                + "oder einer Datenabstraktion nicht ersichtlich ist, welche implementierungsabh‰ngigen Internas verwandt worden sind.";
+        String fuenfteSatz = "bedeutet, dass es f√ºr den Benutzer einer funktionalen Abstraktion "
+                + "oder einer Datenabstraktion nicht ersichtlich ist, welche implementierungsabh√§ngigen Internas verwandt worden sind.";
 
         fuenfte[0] = "Geheimnisprinzip ";
         fuenfte[1] = fuenfteSatz;
-        String string = anweisung + erste[0] + erste[1] + zweite[0] + zweite[1]
-                + dritte[0] + dritte[1] + vierte[0] + vierte[1] + fuenfte[0] + fuenfte[1];
+        String[] string = new String[] {anweisung,erste[0], erste[1], zweite[0], zweite[1], dritte[0], dritte[1], vierte[0], vierte[1], fuenfte[0], fuenfte[1]};
 
-        String[] aufgabe = new String[]{string};
-
-        return aufgabe;
+        return string;
     }
 
 }

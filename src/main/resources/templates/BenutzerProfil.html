@@ -2,32 +2,67 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
  <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Profil </title>
      <link rel="stylesheet" th:href="@{/css/styles.css}" />
 </head>
 <body>
   <div class="form">
     <img th:src="@{/images/osi.jpg}" class="learning">
-	 <h2> FunTestic</h2>
+	<h2> FunTestic</h2>
        <h1>Benutzerprofil</h1>
-	   <form>
-	     <h3>Benutzernahme &aumlndern</h3>
-		  <p><input type="text" placeholder="altes Benutzernahme eingeben" name="" value=""></p>
-		   <p><input type="text" placeholder="neues Benutzernahme eingeben" name="" value=""></p>
-		    <input type="submit" name="" value="Benutzernahme aendern">
 	  
+	   <div class="tab">
+     <button class="tablinks" onclick="openCity(event, 'Benutzername')">Benutzername </button>
+     <button class="tablinks" onclick="openCity(event, 'E-Mail')" >E-Mail </button>
+      <button class="tablinks" onclick="openCity(event, 'Passwort')">Passwort</button>
+       </div>
+	   
+	   <div id="Benutzername" class="tabcontent">
+	     <h3>Benutzername &aumlndern </h3>
+		  <p><input type="text" placeholder="altes Benutzername eingeben" name="" value=""></p>
+		   <p><input type="text" placeholder="neues Benutzername eingeben" name="" value=""></p>
+		    <input type="submit" name="" value="Benutzername ändern">
+			 
+		</div>
+        <div id="E-Mail" class="tabcontent">		
 	    <h3>E-Mail &aumlndern</h3>
 		  <p><input type="text" placeholder="altes E-Mail eingeben" name="" value=""></p>
 		   <p><input type="text" placeholder="neues E-Mail eingeben" name="" value=""></p>
-		    <input type="submit" name="" value="E-Mail aendern">
-	   
-	    <h3>Passwort &aumlndern</h3>
+		    <input type="submit" name="" value="E-Mail  ändern"> 
+		</div>
+        <div id="Passwort" class="tabcontent">		
+	    <h3>Passwort &aumlndern </h3>
 		 <p><input type="password" placeholder="altes Passwort eingeben" name="" value=""></p>
 		  <p><input type="password" placeholder="neues Passwort eingeben" name="" value=""></p>
-		  <input type="submit" name="" value="Passwort endern">
+		  <input type="submit" name="" value="Passwort  ändern">
 		  
+		  </div>
 	   </form>
  </div>
+ <script type="text/javascript">
+ function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+ </script>
  <script src="https://code.jquery.com/jquery-latest.js"></script>
 </body>
 </html>

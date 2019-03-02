@@ -172,3 +172,22 @@ position:absolute;
 padding-bottom:5px;
 
 }
+@media screen and (max-width: 500px){
+
+ 
+.form{
+ width:100%; /* The width is 100%, when the viewport is 500px or smaller */
+ height:auto;
+ position:fixed;
+}
+.menu{
+width:100%;
+height:auto;
+position:fixed;
+}
+
+.rightmenu  ul{
+display:none; /*ausgeblendet wenn klein ist*/
+
+}
+}
