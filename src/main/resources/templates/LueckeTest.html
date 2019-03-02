@@ -25,21 +25,21 @@
 	  </div>
 	  <h3>Füllen Sie den Lückentext mit den Elementen unterhalb des Textes. Durch Klicken auf die Lücke und anschließend auf das 
 	  	  einzufügende Element wird dieses in die Lücke eingefügt. Für jede Lücke gibt es einen Punkt.</h3>
-	  	<h4 id="pointsText">Punkte</h4>
+	  	<h4 id="pointsText"></h4>
 	  <div class="TextForm" id="TextForm">
 	  </div>
 	  <div class="ButtonForm" id="ButtonForm">
 	  </div>
 	  
 	  <div class="btn">
-		<button type="button" id="restartButton"  onclick="" > Neustart </button>
+		<button type="button" id="restartButton"  onclick="Restart()" > Neustart </button>
 		</div>
 		
 	 <div class="btn1">
-		<button type="button" id="CorrectButton"  onclick="" >Korrektur </button>
+		<button type="button" id="CorrectButton"  onclick="CorrectUserInput()" >Korrektur </button>
 	 </div>
 	<div class="btn2">
-		<button type="button" id="resultButton"  onclick="" > Resultat </button>
+		<button type="button" id="resultButton"  onclick="ShowResult()" > Resultat </button>
 	</div>
 	 <script src="https://code.jquery.com/jquery-latest.js"></script>
 	 <script type="text/javascript" th:src="@{/js/LueckenText.js}"></script>
