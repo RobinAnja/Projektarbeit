@@ -21,6 +21,9 @@ public class User {
     @Column(name = "resetToken")
     private String resetToken;
 
+    @Column(name = "points")
+    private int points;
+
 
 //Getters and Setters
 
@@ -64,6 +67,13 @@ public class User {
         this.resetToken = resetToken;
     }
 
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
 }
 
