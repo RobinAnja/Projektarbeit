@@ -1,4 +1,5 @@
 *{
+  box-sizing: border-box;
   margin:0px;
   padding:0px;
 }
@@ -9,7 +10,7 @@ body{
    height: 100vh;
    width: 100%;
    background-position: center;
-   background-repeat: no-repeat;
+   background-repeat:repeat;
    background-size: cover;
 }
 
