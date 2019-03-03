@@ -19,7 +19,7 @@ function login() {
     
     $.ajax({
         type:'GET',
-        url: "/demo/findByUsername?username="+name+"&password="+password,
+        url: "/demo/findByEmail?email="+name+"&password="+password,
         success: function(data){
         	console.log(data);
         	if(data){

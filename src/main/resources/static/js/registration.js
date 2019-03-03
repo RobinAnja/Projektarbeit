@@ -31,7 +31,7 @@ function register() {
     
     $.ajax({
         type:'GET',
-        url: "/demo/register?username="+name+"&email="+email+"&password="+password,
+        url: "/demo/register?name="+name+"&email="+email+"&password="+password,
         success: function(data){
         	if(data){
         		alert("Neuer User erstellt: Name:" + name + ", Email: " + email)

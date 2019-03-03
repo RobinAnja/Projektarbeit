@@ -21,24 +21,30 @@ $(document).ready(function () {
 			global.type = 0;
 			global.startOfArray = 2;
 			global.mod = 12;
+			global.POINTS = 9;
+			global.points = global.POINTS;
 			break;}
 		case 11: {
 			global.type = 1;
 			global.startOfArray = 1;
 			global.mod = 11;
 			global.POINTS = global.POINTS-1; //One step less needed for Selectionsort
-			global.points = global.points-1; 
+			global.points = global.POINTS; 
 			break;}
 		case 9: {
 			global.type = 2; 
 			global.startOfArray = 0;
 			global.mod = 9;
 			global.POINTS = global.POINTS-1; //One step less needed for Selectionsort
-			global.points = global.points-1; 
+			global.points = global.POINTS; 
 			break;
 		}
 		}
-		$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
+		if(type==1){
+			$("#pointsText")[0].innerHTML = ("0 / "+(global.POINTS*2)+" Punkte");
+		}else{
+			$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
+		}
 		fillFirstRow();
 		init = false;
 		}
@@ -76,7 +82,13 @@ function GetNewSortArray(){
 		cells[i].value = "";
 		cellsVisuals[i].style.color = 'white';
 	}
-	$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
+	if(type==1){
+		$("#pointsText")[0].innerHTML = ("0 / "+(global.POINTS*2)+" Punkte");
+	}else{
+		$("#pointsText")[0].innerHTML = ("0 / "+global.POINTS+" Punkte");
+	}
+	
+	global.points = global.POINTS;
 	//create new array in firstrow
 	fillFirstRow();
 	$("#CorrectButton").prop("disabled",false);
@@ -89,8 +101,8 @@ function GetResultTable() {
 	 
 	var correctResult = sortArray();
 	insertResultToTable(correctResult);
-	$("#CorrectButton").prop("disabled",true);
-	$("#CorrectButton").css('color','grey');
+	//$("#CorrectButton").prop("disabled",true);
+	//$("#CorrectButton").css('color','grey');
 };
 
 //Puts result values into inputs (cells) in table
@@ -110,7 +122,12 @@ function CorrectUserSort(){
 
 		var correctResult = sortArray();
 		correctArray(correctResult, 0, global.type, global.points);
-		$("#pointsText")[0].innerHTML = (global.points.toString() + " / "+global.POINTS+" Punkte");
+		if(type==1){
+			$("#pointsText")[0].innerHTML = ((global.points*2).toString() + " / "+(global.POINTS*2)+" Punkte");
+		}else{
+			$("#pointsText")[0].innerHTML = (global.points.toString() + " / "+global.POINTS+" Punkte");
+		}
+		
 		$("#CorrectButton").prop("disabled",true);
 		$("#CorrectButton").css('color','grey');
 };
@@ -135,7 +152,6 @@ function sortArray(){
 	case 11: {array = GetCorrectSelectionSortArray(0, array, 0); break;}
 	case 9: {array = GetCorrectQuickSortArray(array); break;}
 	}
-	console.log(array);
 	return array;
 };
 
@@ -200,21 +216,25 @@ function GetCorrectSelectionSortArray(run, array, count){
 	var index = 0;
 	var count = count;
 	var startIndex = parseInt(run);
-	var endIndex = startIndex + global.POINTS;
 	var correctResult =  [];
-	
-	if (run>0){
+	var endIndex = global.mainArrayLength;
+	console.log("run: "+run);
+	console.log("array: "+array);
+	console.log("count: "+count);
+	if(run>0){
 		startIndex++;
-		endIndex--;
+		endIndex = endIndex + global.startOfArray;
 		}
 	
 		for (var i = startIndex; i < endIndex; i++) {
 		for (var j = i + 1; j < endIndex; j++) {
+			console.log("array["+i+"]:"+array[i]+" > array["+j+"]: "+array[j]);
 			if (array[i] > array[j]) {
 				var temp = array[i];
 				array[i] = array[j];
 				array[j] = temp;
 				count++;
+				console.log("count: "+count);
 			}
 					
 		}
@@ -225,7 +245,7 @@ function GetCorrectSelectionSortArray(run, array, count){
 		var arrayStart = 0; 
 		if(run>0){arrayStart=1;}
 		
-		for(var k = arrayStart; k < arrayStart + global.mainArrayLength; k++)
+		for(var k = arrayStart; k < endIndex; k++)
 		{
 			correctResult[index] = array[k];
 			index++;
@@ -242,7 +262,7 @@ function GetCorrectSelectionSortArray(run, array, count){
 function GetCorrectQuickSortArray(array){
 	var index = 0;
 	var result = [];
-	
+	console.log(array);
 	for (var i = 0; i < array.length - 1; i++) {
 		for (var j = i + 1; j < array.length; j++) {
 			if (array[i] > array[j]) {
@@ -252,6 +272,7 @@ function GetCorrectQuickSortArray(array){
 			}
 					
 		}
+		
 		for(var k= 0; k < array.length; k++)
 		{
 			result[index] = array[k];
@@ -274,8 +295,6 @@ function correctArray(correctResult, index){
 	var compareIndex = 0;
 	var cellsVisuals = table.find('td');
 	
-	console.log("cells: "+cells);
-	console.log("result: "+correctResult);
 	
 	for(var i = index; i < cells.length; i++){
 		if (index == cells.length){
@@ -283,10 +302,15 @@ function correctArray(correctResult, index){
 		}
 		
 		if(cells[i].value){
+			console.log("cell has value");
+			console.log("COMPARE: cells["+i+"].value: "+cells[i].value+" != correctResult["+compareIndex+"]: "+correctResult[compareIndex]);
+			
 			if(cells[i].value != correctResult[compareIndex]){
-				console.log("cells["+i+"].value: "+cells[i].value+" != correctResult["+compareIndex+"]: "+correctResult[compareIndex]);
-					if(checkForResult(correctResult, cells, mod, i)){
+				console.log("cell is different");
+				if(checkForResult(correctResult, cells, mod, i)){
+					console.log("line is like result line");
 						if(i == 0){
+							console.log("first line is result");
 							global.points = 0;
 							return;
 						
@@ -294,7 +318,7 @@ function correctArray(correctResult, index){
 							
 						// Check if last steps deliver the same result
 						// (unneccessary for user because of double rowresults)
-
+						console.log("result reached but in less steps");
 						var notNecessarySteps = countNotNecessarySteps(correctResult);
 						var missingSteps = global.POINTS - ((i/global.mod) + 1) - notNecessarySteps;
 						global.points = global.points - missingSteps;
@@ -304,7 +328,7 @@ function correctArray(correctResult, index){
 						}
 						}else{
 					
-							
+							console.log("line is not result line. so there is an error in line");
 							var array = [];
 							var j = 0;
 							var newIndex =i - (i%mod); // 72
@@ -320,7 +344,7 @@ function correctArray(correctResult, index){
 							}
 							
 							checkForOtherErrorsInRow(mod, newIndex, compInd, cells, correctResult);
-							
+							console.log("poits--");
 							global.points--;
 							if (global.points < 0){
 								global.points = 0;
@@ -338,7 +362,8 @@ function correctArray(correctResult, index){
 									array = GetCorrectQuickSortArray(array);
 									break;
 							}
-							
+							console.log("start new Correct process with array: ");
+							console.log(array);
 							correctArray(array, newIndex + mod);
 							break;
 							}else{
@@ -348,6 +373,7 @@ function correctArray(correctResult, index){
 						}
 				
 			}else{
+				console.log("cell value is right");
 				cellsVisuals[index].style.color = 'white';
 				if(checkForResult(correctResult, cells, mod, i)){
 					return;
@@ -355,9 +381,11 @@ function correctArray(correctResult, index){
 			}
 		
 			}else{	
-			
-			var missingSteps = global.POINTS - (parseInt(i/global.mod));
+			console.log("cell is empty");
+			var notNecessarySteps = countNotNecessarySteps(correctResult);
+			var missingSteps = global.POINTS - ((i/global.mod) + 1) - notNecessarySteps;
 			console.log("Missing Steps: "+missingSteps);
+			console.log(global.points);
 			global.points = global.points - missingSteps;
 			console.log(global.points);
 			if (global.points < 0){global.points = 0;};
@@ -410,15 +438,23 @@ function countNotNecessarySteps(correctResult){
 
 // checks if the current line is the result line of result array (that means that its the end line or user is missing steps)
 function checkForResult(correctResult, cells, mod, index){
-	
-	for (var k = correctResult.length - mod; k < correctResult.length; k++){
-		if(cells[index].value){
-			if(cells[index].value != correctResult[k]){
+	console.log(correctResult);
+	console.log(mod);
+	console.log(cells);
+	var startIndex = index - (index%mod) + global.startOfArray;
+	var resultIndex = correctResult.length - mod + global.startOfArray;
+	console.log("startindex cell: "+startIndex+", endindex cell: "+(startIndex+global.mainArrayLength));
+	console.log("startindex result: "+resultIndex+", endindex result: "+(resultIndex+global.mainArrayLength));
+	for (var k = resultIndex; k < resultIndex+global.mainArrayLength; k++){
+		if(cells[startIndex].value){
+			console.log("cell: "+ cells[startIndex].value+" !="+"result: "+correctResult[k]);
+			if(cells[startIndex].value != correctResult[k]){
 			return false;
 			}
 	}
-		index++;
+		startIndex++;
 	}
+	console.log("result");
 	return true;
 };
 

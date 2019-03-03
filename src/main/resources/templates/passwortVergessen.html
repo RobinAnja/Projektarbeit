@@ -12,15 +12,16 @@
    <img th:src="@{/images/osi.jpg}" class="learning">
     <h2> FunTestic </h2>
     <h1>Bitte geben Sie Ihre E-Mail Adresse ein.</h1>
-	<form name="form1" action="#">
+	<form name="form1" action="#" id="form1">
 
-	<input type="text" placeholder="E-Mail" name="Email" value="">
+	<input type="text" id="email" placeholder="E-Mail" name="Email" value="">
 		 
-		 <input type="submit"onclick="ValidateEmail(document.form1.Email)" value="Passwort wiederherstellen">
+		 <input type="submit" id="submitButton" value="Passwort wiederherstellen">
 		  
     </form>
    </div>
-	<script src="email-validation.js"></script>
+   	   <script src="https://code.jquery.com/jquery-latest.js"></script>
+	<script type="text/javascript" th:src="@{/js/PasswortVergessen.js}"></script>
 
 </body>
 </html>
