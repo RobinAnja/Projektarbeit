@@ -64,7 +64,7 @@ public class MainController {
     // Process form submission from forgotPassword page
     @GetMapping(path = "/forgot")
     public @ResponseBody
-    String processForgotPasswordForm(@RequestParam("email") String userEmail, HttpServletRequest request) {
+    String processForgotPasswordForm(@RequestParam String userEmail, HttpServletRequest request) {
 
         // Lookup user in database by e-mail
         Optional<User> optional = userRepository.findUserByEmail(userEmail);
@@ -93,7 +93,8 @@ public class MainController {
             sendEmail(passwordResetEmail);
 
             // Add success message to view
-            return "A password reset link has been sent to " + userEmail;
+            String returnText = "A password reset link has been sent to " + userEmail;
+            return returnText;
         }
 
     }
@@ -211,7 +212,7 @@ public class MainController {
     }
 
 
-    @GetMapping(path = "/registration") // Map ONLY GET Requests
+    @GetMapping(path = "/register") // Map ONLY GET Requests
     public @ResponseBody
     String addNewUser(@RequestParam String name
             , @RequestParam String email, @RequestParam String password) {

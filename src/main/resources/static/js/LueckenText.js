@@ -4,10 +4,11 @@ var selectedTextButton = "";
 var selectedButton = ""; 
 var previousSelectedTextButton = "";
 var previousSelectedButton = ""; 
-var switchDone = false;
 var POINTS;
 var points;
 var Buttons;
+var buttonSelected = false; 
+var gapSelected = false; 
 
 $(document).ready(function () {
 
@@ -85,34 +86,44 @@ $(document).ready(function () {
 	
 });
 
-function ButtonClicked(buttonId){
-		
+function ButtonClicked(buttonId){		
 	
-		if (global.switchDone){
-			global.switchDone = false; 
-			$(global.previousSelectedButton).css('border-color','white');
-			$(global.previousSelectedTextButton).css('border-color','white');
-			global.previousSelectedButton = global.selectedButton;
-			global.selectedButton = buttonId; 
-		}else{
-			if(global.selectedTextButton != ""){
-				$(global.selectedTextButton).html($(buttonId).html());
-				global.previousSelectedButton = buttonId;
-				global.previousSelectedTextButton = global.selectedTextButton; 
-				global.selectedTextButton = ""; 
-				global.selectedButton = "";
-				global.switchDone = true;
-				$(buttonId).hide('fast');
-			}else{
-				global.previousSelectedButton = global.selectedButton;
-				global.selectedButton = buttonId;
-			}
-		}
-		$(global.previousSelectedButton).css('border-color','white');
 		$(buttonId).css('border-color','#F93');
+		
+		if(global.selectedButton != ""){
+			$(global.selectedButton).css('border-color','white');
+		}
+		global.selectedButton = buttonId;	
+		global.buttonSelected = true;
+		
+			if(global.gapSelected){
+				if ($(global.selectedTextButton).html() != ""){
+					var text = $("#ButtonForm");
+					var buttons = text.find('BUTTON');
+					for(i = 0; i < buttons.length; i++){
+						if (buttons[i].innerHTML == $(global.selectedTextButton).html()){
+							buttons[i].style.display="inline";
+							break;
+						}
+					}
+				}
+				$(global.selectedTextButton).html($(buttonId).html());
+				$(buttonId).hide('fast');
+				$(buttonId).css('border-color','white');
+				global.selectedButton = ""; 
+				global.buttonSelected = false;
+			}
+		
+		
+
 }
 
 function TextButtonClicked(buttonId){
+		$(buttonId).css('border-color','#F93');
+				
+	if(global.selectedTextButton != ""){
+		$(global.selectedTextButton).css('border-color','white');
+	}
 	
 	if ($(buttonId).html() != ""){
 		var text = $("#ButtonForm");
@@ -123,36 +134,22 @@ function TextButtonClicked(buttonId){
 				break;
 			}
 		}
-		if (global.selectedTextButton == buttonId){
-			global.previousSelectedTextButton = global.selectedTextButton;
-			global.selectedTextButton = ""; 
-		}
 		$(buttonId).html("");
-		global.switchDone = false; 
+		global.selectedTextButton = buttonId;
+		global.gapSelected = true;
+		return;
 	}
-	
-	if (global.switchDone){
-		global.switchDone = false; 
-		$(global.previousSelectedButton).css('border-color','white');
-		$(global.previousSelectedTextButton).css('border-color','white');
-		global.previousSelectedTextButton = global.selectedTextButton;
-		global.selectedTextButton = buttonId; 
-	}else{
-		if(global.selectedButton != ""){
+		global.selectedTextButton = buttonId;
+		global.gapSelected = true;		
+		
+		if(global.buttonSelected){
 			$(buttonId).html($(global.selectedButton).html());
-			global.previousSelectedButton = global.selectedButton;
-			global.previousSelectedTextButton = buttonId; 
-			global.selectedTextButton = ""; 
 			$(global.selectedButton).hide('fast');
+			$(global.selectedButton).css('border-color','white');
 			global.selectedButton = "";
-			global.switchDone = true;		
-		}else{
-			global.previousSelectedTextButton = global.selectedTextButton;
-			global.selectedTextButton = buttonId;
+			global.buttonSelected = false;
 		}
-	}
-	$(global.previousSelectedTextButton).css('border-color','white');
-	$(buttonId).css('border-color','#F93');
+
 };
 
 function ShowResult(){
